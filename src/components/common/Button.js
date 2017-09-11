@@ -1,26 +1,33 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 
 const Button = props => {
   const {button, text} = styles;
   return (
-    <TouchableOpacity onPress={props.onPress} style={button}>
-      <Text style={text}>
-        {props.children}
-      </Text>
-    </TouchableOpacity>
+    <View style={{
+      flex: 1
+    }}>
+      <TouchableOpacity onPress={props.onPress} style={button}>
+        <Text style={text}>
+          {props.children}
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
-export { Button };
+export {Button};
+
+const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   button: {
     flex: 1,
+    width: width,
     alignSelf: "stretch",
     backgroundColor: "#FFF",
     borderRadius: 5,
-    backgroundColor: "#007aff",
+    backgroundColor: "#007aff"
   },
   text: {
     alignSelf: "center",
