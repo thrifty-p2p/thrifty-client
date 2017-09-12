@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import Thunk from 'redux-thunk';
@@ -13,7 +12,7 @@ class App extends Component {
     const store = createStore(Reducers, {}, applyMiddleware(Thunk));
     return (
       <Provider store={store}>
-        <Tabs />
+        <Tabs/>
       </Provider>
     );
   }
