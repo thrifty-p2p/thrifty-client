@@ -17,8 +17,8 @@ export const AppNavigation = TabNavigator({
     screen: Feed,
     navigationOptions: {
       tabBarLabel: 'Feed',
-      tabBarIcon: ({focused, tintColor}) => (
-        <Ionicons name={focused ? 'ios-people-outline' : 'ios-people'} size={30} color="#4F8EF7" />
+      tabBarIcon: ({focused}) => (
+        <Ionicons name={focused ? 'ios-people-outline' : 'ios-people'} size={30} color="#D62246" />
       )
     }
   },
@@ -26,8 +26,8 @@ export const AppNavigation = TabNavigator({
     screen: Search,
     navigationOptions: {
       tabBarLabel: 'Search',
-      tabBarIcon: ({focused, tintColor}) => (
-        <Ionicons name={focused ? 'ios-search-outline' : 'ios-search'} size={30} color="#4F8EF7" />
+      tabBarIcon: ({focused}) => (
+        <Ionicons name={focused ? 'ios-search-outline' : 'ios-search'} size={30} color="#D62246" />
       )
     }
   },
@@ -35,8 +35,8 @@ export const AppNavigation = TabNavigator({
     screen: NewProduct,
     navigationOptions: {
       tabBarLabel: 'Add',
-      tabBarIcon: ({focused, tintColor}) => (
-        <Ionicons name={focused ? 'ios-camera-outline' : 'ios-camera'} size={30} color="#4F8EF7" />
+      tabBarIcon: ({focused}) => (
+        <Ionicons name={focused ? 'ios-camera-outline' : 'ios-camera'} size={30} color="#D62246" />
       )
     }
   },
@@ -44,8 +44,8 @@ export const AppNavigation = TabNavigator({
     screen: Notifications,
     navigationOptions: {
       tabBarLabel: 'Notifications',
-      tabBarIcon: ({focused, tintColor}) => (
-        <Ionicons name={focused ? 'ios-notifications-outline' : 'ios-notifications'} size={30} color="#4F8EF7" />
+      tabBarIcon: ({focused}) => (
+        <Ionicons name={focused ? 'ios-notifications-outline' : 'ios-notifications'} size={30} color="#D62246" />
       )
     }
   },
@@ -54,8 +54,8 @@ export const AppNavigation = TabNavigator({
     navigationOptions: {
       // Update to show username
       tabBarLabel: 'Profile',
-      tabBarIcon: ({focused, tintColor}) => (
-        <Ionicons name={focused ? 'ios-contact-outline' : 'ios-contact'} size={30} color="#4F8EF7" />
+      tabBarIcon: ({focused}) => (
+        <Ionicons name={focused ? 'ios-contact-outline' : 'ios-contact'} size={30} color="#D62246" />
       )
     }
   }
@@ -74,7 +74,7 @@ export const LandingNavigation = StackNavigator({
       title: 'Login'
     }
   },
-  SignUp: {
+  Signup: {
     screen: Signup,
     navigationOptions: {
       title: 'Sign Up'

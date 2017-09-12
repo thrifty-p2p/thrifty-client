@@ -13,7 +13,7 @@ class App extends Component {
     const store = createStore(Reducers, {}, applyMiddleware(Thunk));
     return (
       <Provider store={store}>
-        <LandingNavigation/>
+        <AppNavigation/>
       </Provider>
     );
   }
