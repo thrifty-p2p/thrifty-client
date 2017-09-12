@@ -19,14 +19,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: "stretch",
     backgroundColor: "#FFF",
-    borderRadius: 5,
     backgroundColor: "#D62246",
   },
   text: {
     alignSelf: "center",
     color: "#FFF",
-    fontWeight: "600",
+    fontWeight: "700",
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
+    fontSize: 12
   }
 })

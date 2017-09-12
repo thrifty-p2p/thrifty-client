@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import {CardSection, InputField, Button} from './common';
 import {updateAccountForm} from '../actions/auth.actions';
 
-class Login extends React.Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -15,6 +15,7 @@ class Login extends React.Component {
     return (
       <View style={{flex: 1}}>
         <CardSection>
+
           <InputField
             label="EMAIL"
             placeholder="example@mail.com"
@@ -22,6 +23,7 @@ class Login extends React.Component {
             value={this.props.email}
           />
         </CardSection>
+
         <CardSection>
           <InputField
             secureTextEntry
@@ -32,12 +34,12 @@ class Login extends React.Component {
           />
         </CardSection>
 
-
-          <CardSection>
-            <Button>
-              LOGIN
-            </Button>
-          </CardSection>
+        <CardSection>
+          <Button>
+            LOGIN
+          </Button>
+        </CardSection>
+        
       </View>
     );
   }

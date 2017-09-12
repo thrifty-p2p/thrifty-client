@@ -26,17 +26,17 @@ const styles = StyleSheet.create({
     color: '#000',
     paddingRight: 5,
     paddingLeft: 5,
-    fontSize: 18,
+    fontSize: 14,
     lineHeight: 23,
     flex: 2
   },
   labelStyle: {
-    fontSize: 18,
+    fontSize: 14,
     paddingLeft: 20,
     flex: 1
   },
   containerStyle: {
-    height: 40,
+    height: 30,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
