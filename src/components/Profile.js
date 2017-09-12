@@ -1,15 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet, Platform} from 'react-native';
 
-const Feed = props => {
+const Profile = props => {
   return(
     <View style={styles.container}>
-      <Text>Feed</Text>
+      <Text>Profile</Text>
     </View>
   );
 }
 
-export default Feed;
+export default Profile;
 
 const styles = StyleSheet.create({
   container: {
