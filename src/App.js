@@ -5,7 +5,7 @@ import {createStore, applyMiddleware} from 'redux';
 import Thunk from 'redux-thunk';
 
 import Reducers from './reducers';
-import ApplicationRoutes from './ApplicationRoutes';
+import ThriftyNavigation from './ApplicationRoutes';
 import LandingScreen from './components/LandingScreen';
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
     const store = createStore(Reducers, {}, applyMiddleware(Thunk));
     return (
       <Provider store={store}>
-        <LandingScreen/>
+        <ThriftyNavigation/>
       </Provider>
     );
   }
