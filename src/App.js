@@ -4,7 +4,8 @@ import {createStore, applyMiddleware} from 'redux';
 import Thunk from 'redux-thunk';
 
 import Reducers from './reducers';
-import {Tabs} from './RouterConfig';
+import {AppNavigation, LandingNavigation} from './RouterConfig';
+
 // import LandingScreen from './components/LandingScreen';
 
 class App extends Component {
@@ -12,7 +13,7 @@ class App extends Component {
     const store = createStore(Reducers, {}, applyMiddleware(Thunk));
     return (
       <Provider store={store}>
-        <Tabs/>
+        <LandingNavigation/>
       </Provider>
     );
   }

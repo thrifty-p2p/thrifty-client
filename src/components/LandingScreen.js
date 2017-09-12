@@ -1,17 +1,15 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, StyleSheet, Platform} from 'react-native';
 
 import {Button} from './common';
 
 const LandingScreen = props => {
   return(
     <View>
-      <Button>
-        LOGIN
-      </Button>
-      <Button>
-        LOGIN
-      </Button>
+        <Button
+          onPress={() => props.navigation.navigate('Login')}>
+          LOGIN
+        </Button>
     </View>
   );
 }

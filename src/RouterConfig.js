@@ -1,5 +1,5 @@
 import React from 'react';
-import {TabNavigator} from 'react-navigation'
+import {TabNavigator, StackNavigator} from 'react-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Feed from './components/Feed';
@@ -8,7 +8,11 @@ import NewProduct from './components/NewProduct';
 import Notifications from './components/Notifications';
 import Profile from './components/Profile';
 
-export const Tabs = TabNavigator({
+import LandingScreen from './components/LandingScreen';
+import Login from './components/Login';
+import Signup from './components/Signup';
+
+export const AppNavigation = TabNavigator({
   Feed: {
     screen: Feed,
     navigationOptions: {
@@ -56,3 +60,31 @@ export const Tabs = TabNavigator({
     }
   }
 });
+
+export const LandingNavigation = StackNavigator({
+  Landing: {
+    screen: LandingScreen,
+    navigationOptions: {
+      title: 'Home'
+    }
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      title: 'Login'
+    }
+  },
+  SignUp: {
+    screen: Signup,
+    navigationOptions: {
+      title: 'Sign Up'
+    }
+  }
+});
+
+
+export const RootNavigation = (loggedIn = false) => {
+  return StackNavigator({
+
+  });
+}
