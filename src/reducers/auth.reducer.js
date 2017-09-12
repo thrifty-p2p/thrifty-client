@@ -17,22 +17,22 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, [action.payload.property]: action.payload.value};
 
     case auth.ACCOUNT_LOGIN_REQUEST:
-      return {...state, isLoading: true, error: ''};
+      return {...state, isLoading: true};
 
     case auth.ACCOUNT_LOGIN_SUCCESS:
-      return {...state, isLoading: false};
+      return {...state, ...INITIAL_STATE};
 
     case auth.ACCOUNT_LOGIN_FAILUE:
-      return {...state, error: action.payload};
+      return {...state, error: action.payload, ...INITIAL_STATE};
 
     case auth.ACCOUNT_SIGNUP_REQUEST:
-      return {...state, isLoading: true, error: ''};
+      return {...state, isLoading: true};
 
     case auth.ACCOUNT_SIGNUP_SUCCESS:
-      return {...state, isLoading: false};
+      return {...state, ...INITIAL_STATE};
 
     case auth.ACCOUNT_SIGNUP_FAILUE:
-      return {...state, error: action.payload};
+      return {...state, error: action.payload, ...INITIAL_STATE};
 
     default:
       return state;

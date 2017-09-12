@@ -4,31 +4,35 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import {CardSection, InputField, Button} from './common';
-import {updateAccountForm} from '../actions/auth.actions';
+import {updateAccountForm, createNewAccount} from '../actions/auth.actions';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
-
+    this.onButtonPress = this.onButtonPress.bind(this);
   }
+
+  onButtonPress() {
+    const {first_name, last_name, email, username, password} = this.props;
+    this.props.createNewAccount({first_name, last_name, email: email.toLowerCase(), username, password});
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
 
         <CardSection>
           <InputField
-            secureTextEntry
             label="FIRST NAME"
-            placeholder="password"
+            placeholder="First Name"
             onChangeText={value => this.props.updateAccountForm({property: 'first_name', value})}
             value={this.props.first_name}/>
         </CardSection>
 
         <CardSection>
           <InputField
-            secureTextEntry
             label="LAST NAME"
-            placeholder="password"
+            placeholder="Last Name"
             onChangeText={value => this.props.updateAccountForm({property: 'last_name', value})}
             value={this.props.last_name}/>
         </CardSection>
@@ -43,9 +47,8 @@ class Signup extends Component {
 
         <CardSection>
           <InputField
-            secureTextEntry
             label="USERNAME"
-            placeholder="password"
+            placeholder="Username"
             onChangeText={value => this.props.updateAccountForm({property: 'username', value})}
             value={this.props.username}/>
         </CardSection>
@@ -60,7 +63,7 @@ class Signup extends Component {
         </CardSection>
 
         <CardSection>
-          <Button>
+          <Button onPress={this.onButtonPress}>
             SIGN UP
           </Button>
         </CardSection>
@@ -81,7 +84,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({updateAccountForm}, dispatch);
+  return bindActionCreators({updateAccountForm, createNewAccount}, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

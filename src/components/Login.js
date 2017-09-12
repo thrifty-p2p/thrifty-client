@@ -4,13 +4,20 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {CardSection, InputField, Button} from './common';
-import {updateAccountForm} from '../actions/auth.actions';
+import {updateAccountForm, loginAccount} from '../actions/auth.actions';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
+    this.onButtonPress = this.onButtonPress.bind(this);
   }
+
+  onButtonPress() {
+    const {email, password} = this.props;
+    this.props.loginAccount({email: email.toLowerCase(), password});
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -35,23 +42,26 @@ class Login extends Component {
         </CardSection>
 
         <CardSection>
-          <Button>
+          <Button onPress={this.onButtonPress}>
             LOGIN
           </Button>
         </CardSection>
-        
+
       </View>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const {email, password} = state.auth;
-  return {email, password}
+  const {email, password, isLoading} = state.auth;
+  return {email, password, isLoading}
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({updateAccountForm}, dispatch)
+  return bindActionCreators({
+    updateAccountForm,
+    loginAccount
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
