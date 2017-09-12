@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Image, Platform} from 'react-native';
 
-import {Button} from './common';
+import {Button, CardSection} from './common';
 
 const LandingScreen = props => {
   const {container, body, image, buttons} = styles;
@@ -11,15 +11,18 @@ const LandingScreen = props => {
         <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo_main.png'}} style={image} />
       </View>
       <View style={buttons}>
-        <Button
-          onPress={() => props.navigation.navigate('Login')}>
-          LOGIN
-        </Button>
-
-        <Button
-          onPress={() => props.navigation.navigate('Signup')}>
-          SIGN UP
-        </Button>
+        <CardSection>
+          <Button
+            onPress={() => props.navigation.navigate('Login')}>
+            LOGIN
+          </Button>
+        </CardSection>
+        <CardSection>
+          <Button
+            onPress={() => props.navigation.navigate('Signup')}>
+            SIGN UP
+          </Button>
+        </CardSection>
       </View>
     </View>
   );
@@ -32,7 +35,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   body: {
-    flex: 10,
     alignItems: 'center',
     justifyContent: 'center'
   },
