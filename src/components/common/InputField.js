@@ -3,14 +3,14 @@ import { TextInput, View, Text, StyleSheet } from 'react-native';
 
 const InputField = props => {
   const { label, value, onChangeText, placeholder, secureTextEntry } = props;
-  const { inputCSS, labelCSS, containerCSS } = styles;
+  const { inputStyle, labelStyle, containerStyle } = styles;
   return(
-    <View style={containerCSS}>
-      <Text style={labelCSS}>{label}</Text>
+    <View style={containerStyle}>
+      <Text style={labelStyle}>{label}</Text>
       <TextInput
         autoCorrect={false}
         placeholder={placeholder}
-        style={inputCSS}
+        style={inputStyle}
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
@@ -22,7 +22,7 @@ const InputField = props => {
 export { InputField };
 
 const styles = StyleSheet.create({
-  inputCSS: {
+  inputStyle: {
     color: '#000',
     paddingRight: 5,
     paddingLeft: 5,
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     lineHeight: 23,
     flex: 2
   },
-  labelCSS: {
+  labelStyle: {
     fontSize: 18,
     paddingLeft: 20,
     flex: 1
   },
-  containerCSS: {
+  containerStyle: {
     height: 40,
     flex: 1,
     flexDirection: 'row',
