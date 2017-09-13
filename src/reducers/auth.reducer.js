@@ -2,6 +2,7 @@ import * as auth from '../actions/action.types';
 
 const INITIAL_STATE = {
   isLoading: false,
+  isLoggedIn: false,
   error: '',
   first_name: '',
   last_name: '',
@@ -20,7 +21,7 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, isLoading: true};
 
     case auth.ACCOUNT_LOGIN_SUCCESS:
-      return {...state, ...INITIAL_STATE};
+      return {...state, ...INITIAL_STATE, isLoggedIn: action.isLoggedIn};
 
     case auth.ACCOUNT_LOGIN_FAILUE:
       return {...state, error: action.payload, ...INITIAL_STATE};
@@ -29,10 +30,13 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, isLoading: true};
 
     case auth.ACCOUNT_SIGNUP_SUCCESS:
-      return {...state, ...INITIAL_STATE};
+      return {...state, ...INITIAL_STATE, isLoggedIn: action.isLoggedIn};
 
     case auth.ACCOUNT_SIGNUP_FAILUE:
       return {...state, error: action.payload, ...INITIAL_STATE};
+
+    case auth.ACCOUNT_LOGOUT:
+      return {...state, isLoggedIn: action.isLoggedIn}
 
     default:
       return state;

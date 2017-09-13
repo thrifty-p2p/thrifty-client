@@ -32,7 +32,9 @@ export default LandingScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: Platform.OS === 'ios' ? 20 : 0
   },
   body: {
     alignItems: 'center',
@@ -40,9 +42,11 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 100,
-    width: 200
+    width: 200,
+    justifyContent: 'center'
   },
   buttons: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'flex-end'
   }
-})
+});

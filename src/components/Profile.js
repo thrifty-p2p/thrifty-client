@@ -1,15 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, Text, StyleSheet, Platform} from 'react-native';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-const Profile = props => {
-  return(
-    <View style={styles.container}>
-      <Text>Profile</Text>
-    </View>
-  );
+import {CardSection, Button} from './common';
+import {logoutAccount} from '../actions/auth.actions';
+
+class Profile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onLogout = this.onLogout.bind(this);
+  }
+
+  onLogout() {
+    this.props.logoutAccount();
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <CardSection>
+          <Button onPress={this.onLogout}>LOGOUT</Button>
+        </CardSection>
+      </View>
+    );
+  }
 }
 
-export default Profile;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({logoutAccount}, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Profile);
 
 const styles = StyleSheet.create({
   container: {
