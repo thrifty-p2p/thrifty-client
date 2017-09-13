@@ -12,7 +12,6 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action)
   switch (action.type) {
     case auth.ACCOUNT_FORM_UPDATE:
       return {...state, [action.payload.property]: action.payload.value};
