@@ -2,9 +2,14 @@ import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 const Button = props => {
-  const {button, text} = styles;
+  const {text} = styles;
+  const button = {
+    flex: 1,
+    alignSelf: "stretch",
+    backgroundColor: props.color,
+  }
   return (
-    <TouchableOpacity onPress={props.onPress} style={{flex: 1, alignSelf: "stretch", backgroundColor: props.color}}>
+    <TouchableOpacity onPress={props.onPress} style={button}>
       <Text style={text}>
         {props.children}
       </Text>
@@ -15,9 +20,7 @@ const Button = props => {
 export { Button };
 
 const styles = StyleSheet.create({
-  button: {
 
-  },
   text: {
     alignSelf: "center",
     color: "#FFF",
