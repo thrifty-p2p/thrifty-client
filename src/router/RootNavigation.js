@@ -8,11 +8,11 @@ import LandingNavigation from './LandingNavigation';
 class RootNavigation extends Component {
 
   render() {
-    if (this.props.isLoggedIn) {
-      return <AppNavigation />
-    }
+    // if (this.props.isLoggedIn) {
+    //   return <AppNavigation />
+    // }
     return (
-      <LandingNavigation />
+      <AppNavigation /> //<LandingNavigation />
     );
   }
 }

@@ -1,11 +1,16 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 
 const Header = props => {
-  const {viewStyle, textStyle} = styles
+  const {viewStyle, textStyle, imageStyle} = styles
   return(
     <View style={viewStyle}>
-      <Text style={textStyle}>{props.headerTitle}</Text>
+      <View>
+        <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo_main.png'}} style={imageStyle}/>
+      </View>
+      <View>
+        <Text style={textStyle}>{props.title}</Text>
+      </View>
     </View>
   );
 }
@@ -16,9 +21,9 @@ export { Header };
 const styles = StyleSheet.create({
   viewStyle: {
     backgroundColor: "#EEE",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
-    height: 60,
+    height: 50,
     paddingTop: 15,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2},
@@ -28,5 +33,9 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 20,
+  },
+  imageStyle: {
+    width: 80,
+    height: 30
   }
 })

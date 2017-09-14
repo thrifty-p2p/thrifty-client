@@ -1,9 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, Platform} from 'react-native';
 
+import {Header} from './common';
+
 const Notifications = props => {
   return(
     <View style={styles.container}>
+      <Header title="NOTIFICATIONS"/>
       <Text>Notifications</Text>
     </View>
   );

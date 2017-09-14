@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {CardSection, Button} from './common';
+import {CardSection, Button, Header} from './common';
 import {logoutAccount} from '../actions/auth.actions';
 
 class Profile extends Component {
@@ -20,6 +20,7 @@ class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header title="PROFILE"/>
         <CardSection>
           <Button onPress={this.onLogout}>LOGOUT</Button>
         </CardSection>

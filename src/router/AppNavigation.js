@@ -1,5 +1,5 @@
 import React from 'react';
-import {TabNavigator} from 'react-navigation'
+import {TabNavigator} from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Feed from '../components/Feed';

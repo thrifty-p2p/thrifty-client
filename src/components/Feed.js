@@ -4,15 +4,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {fetchAllProducts} from '../actions/product.actions';
-import {Card, CardSection, LoadingIcon} from './common';
+import {Card, CardSection, LoadingIcon, Header} from './common';
 import ProductDetail from './ProductDetail';
 
 class Feed extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   componentDidMount(){
     this.props.fetchAllProducts();
   }
@@ -34,10 +29,12 @@ class Feed extends React.Component {
       );
     }
     return (
-      <ScrollView style={styles.container}>
-        {console.log(this.props.products)}
-        {this.renderProducts()}
-      </ScrollView>
+      <View style={styles.container}>
+        <Header/>
+        <ScrollView style={{marginBottom: 60}}>
+          {this.renderProducts()}
+        </ScrollView>
+      </View>
     );
   }
 }

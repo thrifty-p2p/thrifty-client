@@ -1,6 +1,5 @@
 import React from 'react';
-import {StackNavigator} from 'react-navigation'
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {StackNavigator} from 'react-navigation';
 
 import LandingScreen from '../components/LandingScreen';
 import Login from '../components/Login';

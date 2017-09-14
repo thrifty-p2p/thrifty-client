@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, Linking} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {Card, CardSection, Button} from './common';
 
 const ProductDetail = props => {
 
-const {textContainer, thumbnail, thumbnailContainer, headerText, cardImage} = styles;
-
+const {textContainer, thumbnail, thumbnailContainer, headerText, cardImage, productActionsStyle} = styles;
   return(
     <Card>
       <CardSection>
@@ -16,21 +16,42 @@ const {textContainer, thumbnail, thumbnailContainer, headerText, cardImage} = st
           }}/>
         </View>
         <View style={textContainer}>
-          <Text style={headerText}>{props.product.title}</Text>
           <Text>{props.product.seller.username}</Text>
         </View>
       </CardSection>
 
       <CardSection>
-        <Image style={cardImage} source={{
-          uri: props.product.images["0"].image_url
-        }}/>
+        <Image style={cardImage} source={{uri: props.product.images["0"].image_url}}/>
       </CardSection>
 
       <CardSection>
-        <Button>
-          BUY NOW
-        </Button>
+        <View style={productActionsStyle}>
+          <View style={{flex: 1, alignItems: 'center'}}>
+            <Ionicons name="ios-heart" size={20} color="#000"/>
+          </View>
+
+          <View style={{flex: 1, alignItems: 'center'}}>
+            <Ionicons name="ios-text" size={20} color="#000"/>
+          </View>
+
+          <View style={{flex: 1, alignItems: 'center'}}>
+            <Ionicons name="ios-share-alt" size={20} color="#000" />
+          </View>
+        </View>
+      </CardSection>
+
+      <CardSection>
+        <View style={productActionsStyle}>
+          <View style={{flex:4}}>
+            <Text style={headerText}>{props.product.title}</Text>
+            <Text>$ {props.product.price}</Text>
+          </View>
+          <View style={{flex:1}}>
+            <Button>
+              BUY
+            </Button>
+          </View>
+        </View>
       </CardSection>
     </Card>
   );
@@ -48,7 +69,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 40 / 2,
     borderColor: "#CCC",
-    borderWidth: 3
+    borderWidth: 1
   },
   textContainer: {
     flexDirection: "column",
@@ -56,12 +77,17 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   headerText: {
-    fontSize: 14,
+    fontSize: 12,
     flexWrap: 'wrap'
   },
   cardImage: {
     height: 300,
     flex: 1,
     width: null
+  },
+  productActionsStyle: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 });

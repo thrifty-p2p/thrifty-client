@@ -23,6 +23,7 @@ const LandingScreen = props => {
             SIGN UP
           </Button>
         </CardSection>
+
       </View>
     </View>
   );

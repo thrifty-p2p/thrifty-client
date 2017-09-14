@@ -11,7 +11,6 @@ export default (state = INITIAL_STATE, action) => {
     case product.FETCH_ALL_PRODUCTS_REQUEST:
       return {...state, isLoading: true}
     case product.FETCH_ALL_PRODUCTS_SUCCESS:
-      console.log(action.payload);
       return {...state, products: action.payload, isLoading: false}
     case product.FETCH_ALL_PRODUCTS_SUCCESS:
       return {...state, isLoading: false, error: action.payload}
