@@ -1,18 +1,61 @@
 import React from 'react';
-import {View, Text, StyleSheet, Platform} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, Platform, ListView} from 'react-native';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-const Feed = props => {
-  return(
-    <View style={styles.container}>
-      <Text>Feed</Text>
-    </View>
-  );
+import {fetchAllProducts} from '../actions/product.actions';
+import {Card, CardSection, LoadingIcon, Header} from './common';
+import ProductDetail from './ProductDetail';
+
+class Feed extends React.Component {
+  componentDidMount(){
+    this.props.fetchAllProducts();
+  }
+
+  renderProducts() {
+    return this.props.products.map(product => {
+      if(product.is_available) {
+        return <ProductDetail key={product.id} product={product} navigation={this.props.navigation}/>;
+      }
+    });
+  }
+
+  render() {
+    if (this.props.isLoading) {
+      return (
+        <View style={styles.body}>
+          <LoadingIcon />
+        </View>
+      );
+    }
+    return (
+      <View style={styles.container}>
+        <Header isBackProp={false}/>
+        <ScrollView style={{marginBottom: 60}}>
+          {this.renderProducts()}
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
-export default Feed;
+const mapStateToProps = (state) => {
+  const { products, isLoading } = state.products
+  return { products, isLoading };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({fetchAllProducts}, dispatch);
+};
 
 const styles = StyleSheet.create({
   container: {
     marginTop: Platform.OS === 'ios' ? 20 : 0
+  },
+  body: {
+    alignSelf: 'center',
+    justifyContent: 'center'
   }
 });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

@@ -15,11 +15,10 @@ export { CardSection };
 const styles = StyleSheet.create({
   cardSectionContainer: {
     borderBottomWidth: 1,
-    padding: 5,
     backgroundColor: "#FFF",
     justifyContent: "flex-start",
     flexDirection: "row",
-    borderColor: "#DDD",
+    borderColor: "#EEE",
     position: "relative"
   }
 })

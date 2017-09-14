@@ -4,14 +4,25 @@ import {createStore, applyMiddleware} from 'redux';
 import Thunk from 'redux-thunk';
 
 import Reducers from './reducers';
-import {AppNavigation, LandingNavigation} from './RouterConfig';
+import RootNavigation from './router/RootNavigation';
+
+import isLoggedIn from './utilities/isLoggedIn';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+
+  }
+
   render() {
     const store = createStore(Reducers, {}, applyMiddleware(Thunk));
+
     return (
       <Provider store={store}>
-        <LandingNavigation/>
+        <RootNavigation/>
       </Provider>
     );
   }

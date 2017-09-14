@@ -42,7 +42,7 @@ class Login extends Component {
         </CardSection>
 
         <CardSection>
-          <Button onPress={this.onButtonPress}>
+          <Button onPress={this.onButtonPress} color="#D62246">
             LOGIN
           </Button>
         </CardSection>
@@ -53,8 +53,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const {email, password, isLoading} = state.auth;
-  return {email, password, isLoading}
+  const {email, password, isLoading, isLoggedIn} = state.auth;
+  return {email, password, isLoading, isLoggedIn}
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,18 +1,22 @@
+// Render the Product Detail Page
 import React from 'react';
 import {View, Text, StyleSheet, Platform} from 'react-native';
+import {Grid, Col} from 'react-native-elements';
 
 import {Header} from './common';
 
-const Notifications = props => {
+const UserProfile = props => {
   return(
     <View style={styles.container}>
-      <Header isBackProp={false}/>
-      <Text>Notifications</Text>
+      <Header
+        isBackProp={true}
+        navigation={props.navigation}/>
+      <Text>UserProfile</Text>
     </View>
   );
 }
 
-export default Notifications;
+export default UserProfile;
 
 const styles = StyleSheet.create({
   container: {
