@@ -7,22 +7,25 @@ import {Card, CardSection, Button} from './common';
 const ProductDetail = props => {
 
 const {textContainer, thumbnail, thumbnailContainer, headerText, productImage, grid, linkStyle} = styles;
+
+const {seller, date_created, images, title, price} = props.product;
+
   return(
     <Card>
       <CardSection>
         <View style={thumbnailContainer}>
           <Image style={thumbnail} source={{
-            uri: props.product.seller.profile_image_url
+            uri: seller.profile_image_url
           }}/>
         </View>
         <View style={textContainer}>
-          <Text style={linkStyle} onPress={() => props.navigation.navigate('UserProfile')}>{props.product.seller.username}</Text>
-          <Text style={{fontSize: 8}}>{props.product.date_created}</Text>
+          <Text style={linkStyle}>{seller.username}</Text>
+          <Text style={{fontSize: 8}}>{date_created}</Text>
         </View>
       </CardSection>
 
       <CardSection>
-        <Image style={productImage} source={{uri: props.product.images["0"].image_url}}/>
+        <Image style={productImage} source={{uri: images["0"].image_url}}/>
       </CardSection>
 
       <CardSection>
@@ -44,16 +47,16 @@ const {textContainer, thumbnail, thumbnailContainer, headerText, productImage, g
       <CardSection>
         <View style={grid}>
           <View style={{flex:4}}>
-            <Text style={headerText}>{props.product.title.substr(0, 30)}</Text>
-            <Text>$ {props.product.price}</Text>
+            <Text style={headerText}>{title.substr(0, 30)}</Text>
+            <Text>$ {price}</Text>
           </View>
           <View style={{flex:1}}>
-            <Button onPress={() => props.navigation.navigate('Product', {productID: props.product.id})} color="#CCC">
-              INFO
+            <Button color="#CCC">
+              OFFER
             </Button>
           </View>
           <View style={{flex:1}}>
-            <Button onPress={() => props.navigation.navigate('Checkout')} color="#D62246">
+            <Button color="#D62246">
               BUY
             </Button>
           </View>

@@ -10,16 +10,22 @@ export const fetchAllProducts = () => {
     .then(response => {
       setTimeout(() => {
         dispatch({type: product.FETCH_ALL_PRODUCTS_SUCCESS, payload: response.data});
-      }, 1000);
+      }, 500);
     }).catch(error => {
       dispatch({type: product.FETCH_ALL_PRODUCTS_FAILURE, payload: error});
     });
   }
 };
 
-export const fetchProductById = (id) => {
+export const fetchProductById = (productID) => {
   return dispatch => {
-
+    dispatch({type: product.FETCH_PRODUCT_BY_ID_REQUEST});
+    Axios.get(`${API_URL}/product/${productID}`)
+    .then(response => {
+      dispatch({type: product.FETCH_PRODUCT_BY_ID_SUCCESS, payload: response.data[0]});
+    }).catch(error => {
+      dispatch({type: product.FETCH_PRODUCT_BY_ID_FAILURE, payload: error});
+    });
   }
 };
 
