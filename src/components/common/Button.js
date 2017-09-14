@@ -4,7 +4,7 @@ import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 const Button = props => {
   const {button, text} = styles;
   return (
-    <TouchableOpacity onPress={props.onPress} style={button}>
+    <TouchableOpacity onPress={props.onPress} style={{flex: 1, alignSelf: "stretch", backgroundColor: props.color}}>
       <Text style={text}>
         {props.children}
       </Text>
@@ -16,10 +16,7 @@ export { Button };
 
 const styles = StyleSheet.create({
   button: {
-    flex: 1,
-    alignSelf: "stretch",
-    backgroundColor: "#FFF",
-    backgroundColor: "#D62246",
+
   },
   text: {
     alignSelf: "center",

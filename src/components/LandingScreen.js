@@ -12,14 +12,12 @@ const LandingScreen = props => {
       </View>
       <View style={buttons}>
         <CardSection>
-          <Button
-            onPress={() => props.navigation.navigate('Login')}>
+          <Button onPress={() => props.navigation.navigate('Login')} color="#D62246">
             LOGIN
           </Button>
         </CardSection>
         <CardSection>
-          <Button
-            onPress={() => props.navigation.navigate('Signup')}>
+          <Button onPress={() => props.navigation.navigate('Signup')} color="#D62246">
             SIGN UP
           </Button>
         </CardSection>

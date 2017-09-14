@@ -4,16 +4,18 @@ import {Grid, Col} from 'react-native-elements';
 
 import {Header} from './common';
 
-const Search = props => {
+const Checkout = props => {
   return(
     <View style={styles.container}>
-      <Header isBackProp={false}/>
-      <Text>Search</Text>
+      <Header
+        isBackProp={true}
+        navigation={props.navigation}/>
+      <Text>Checkout</Text>
     </View>
   );
 }
 
-export default Search;
+export default Checkout;
 
 const styles = StyleSheet.create({
   container: {

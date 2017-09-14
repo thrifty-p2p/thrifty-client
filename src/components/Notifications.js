@@ -6,7 +6,7 @@ import {Header} from './common';
 const Notifications = props => {
   return(
     <View style={styles.container}>
-      <Header title="NOTIFICATIONS"/>
+      <Header isBackProp={false}/>
       <Text>Notifications</Text>
     </View>
   );

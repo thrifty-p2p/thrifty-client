@@ -20,7 +20,7 @@ class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title="PROFILE"/>
+        <Header isBackProp={false}/>
         <CardSection>
           <Button onPress={this.onLogout}>LOGOUT</Button>
         </CardSection>

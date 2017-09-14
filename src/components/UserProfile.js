@@ -1,19 +1,22 @@
+// Render the Product Detail Page
 import React from 'react';
 import {View, Text, StyleSheet, Platform} from 'react-native';
 import {Grid, Col} from 'react-native-elements';
 
 import {Header} from './common';
 
-const Search = props => {
+const UserProfile = props => {
   return(
     <View style={styles.container}>
-      <Header isBackProp={false}/>
-      <Text>Search</Text>
+      <Header
+        isBackProp={true}
+        navigation={props.navigation}/>
+      <Text>UserProfile</Text>
     </View>
   );
 }
 
-export default Search;
+export default UserProfile;
 
 const styles = StyleSheet.create({
   container: {

@@ -6,8 +6,8 @@ import {Header} from './common';
 const NewProduct = props => {
   return(
     <View style={styles.container}>
-      <Header title="ADD"/>
-      <Text>NewProduct</Text>
+      <Header isBackProp={false}/>
+      <Text>New Product</Text>
     </View>
   );
 }

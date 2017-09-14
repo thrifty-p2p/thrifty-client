@@ -16,7 +16,7 @@ const {textContainer, thumbnail, thumbnailContainer, headerText, cardImage, prod
           }}/>
         </View>
         <View style={textContainer}>
-          <Text>{props.product.seller.username}</Text>
+          <Text onPress={() => props.navigation.navigate('UserProfile')}>{props.product.seller.username}</Text>
         </View>
       </CardSection>
 
@@ -27,15 +27,15 @@ const {textContainer, thumbnail, thumbnailContainer, headerText, cardImage, prod
       <CardSection>
         <View style={productActionsStyle}>
           <View style={{flex: 1, alignItems: 'center'}}>
-            <Ionicons name="ios-heart" size={20} color="#000"/>
+            <Ionicons name='ios-heart' size={20} color='#000' />
           </View>
 
           <View style={{flex: 1, alignItems: 'center'}}>
-            <Ionicons name="ios-text" size={20} color="#000"/>
+            <Ionicons name='ios-text' size={20} color='#000' />
           </View>
 
           <View style={{flex: 1, alignItems: 'center'}}>
-            <Ionicons name="ios-share-alt" size={20} color="#000" />
+            <Ionicons name='ios-share-alt' size={20} color='#000' />
           </View>
         </View>
       </CardSection>
@@ -43,11 +43,16 @@ const {textContainer, thumbnail, thumbnailContainer, headerText, cardImage, prod
       <CardSection>
         <View style={productActionsStyle}>
           <View style={{flex:4}}>
-            <Text style={headerText}>{props.product.title}</Text>
+            <Text style={headerText}>{props.product.title.substr(0, 30)}</Text>
             <Text>$ {props.product.price}</Text>
           </View>
           <View style={{flex:1}}>
-            <Button>
+            <Button onPress={() => props.navigation.navigate('Product')} color="#CCC">
+              INFO
+            </Button>
+          </View>
+          <View style={{flex:1}}>
+            <Button onPress={() => props.navigation.navigate('Checkout')} color="#D62246">
               BUY
             </Button>
           </View>
@@ -77,7 +82,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   headerText: {
-    fontSize: 12,
+    fontSize: 14,
     flexWrap: 'wrap'
   },
   cardImage: {

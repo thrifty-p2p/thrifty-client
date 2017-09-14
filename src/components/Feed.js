@@ -15,7 +15,7 @@ class Feed extends React.Component {
   renderProducts() {
     return this.props.products.map(product => {
       if(product.is_available) {
-        return <ProductDetail key={product.id} product={product}/>;
+        return <ProductDetail key={product.id} product={product} navigation={this.props.navigation}/>;
       }
     });
   }
@@ -30,7 +30,7 @@ class Feed extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <Header/>
+        <Header isBackProp={false}/>
         <ScrollView style={{marginBottom: 60}}>
           {this.renderProducts()}
         </ScrollView>
