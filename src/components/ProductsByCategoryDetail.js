@@ -1,15 +1,16 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, Linking} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import {Card, CardSection, Button} from './common';
 import ProductLayout from './ProductLayout';
 
-const ProductDetail = props => {
+const SingleProductDetail = props => {
 
 const {grid, priceStyle} = styles;
 
 const {price} = props.product;
+
+console.log(props);
 
   return(
     <Card>
@@ -22,8 +23,8 @@ const {price} = props.product;
             <Text>PRICE: $ {price}</Text>
           </View>
           <View style={{flex:1}}>
-            <Button onPress={() => props.navigation.navigate('Product', {productID: props.product.id})} color="#CCC">
-              INFO
+            <Button color="#CCC">
+              OFFER
             </Button>
           </View>
           <View style={{flex:1}}>
@@ -37,17 +38,17 @@ const {price} = props.product;
   );
 }
 
-export default ProductDetail;
+export default SingleProductDetail;
 
 const styles = StyleSheet.create({
   grid: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   priceStyle: {
     flex: 4,
     alignSelf: 'center',
     paddingLeft: 5
-  },
+  }
 });
