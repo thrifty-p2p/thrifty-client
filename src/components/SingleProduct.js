@@ -1,5 +1,5 @@
 // Render the Product Detail Page
-import React from 'react';
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -13,9 +13,9 @@ import {bindActionCreators} from 'redux';
 
 import {fetchProductById} from '../actions/product.actions';
 import {Header, Button, LoadingIcon, Card, CardSection} from './common';
-import ProductSingleDetail from './ProductSingleDetail';
+import SingleProductDetail from './SingleProductDetail';
 
-class ProductSingle extends React.Component {
+class SingleProduct extends Component {
   componentDidMount() {
     const {productID} = this.props.navigation.state.params;
     this.props.fetchProductById(productID);
@@ -24,7 +24,7 @@ class ProductSingle extends React.Component {
   renderProductById() {
     if (this.props.isReceived) {
       return (
-        <ProductSingleDetail product={this.props.productById} />
+        <SingleProductDetail navigation={this.props.navigation} product={this.props.productById} />
       );
     }
   }
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => {
   return {isLoading, productById, isReceived};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
 
 const styles = StyleSheet.create({
   container: {

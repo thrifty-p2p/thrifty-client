@@ -1,23 +1,13 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation'
 
-import Feed from '../components/Feed';
-// import SingleProduct from '../components/SingleProduct';
+import SingleProduct from '../components/SingleProduct';
 import Checkout from '../components/Checkout';
 import UserProfile from '../components/UserProfile';
 
-import SingleProductNavigation from './SingleProductNavigation';
-
-const ProductNavigation = StackNavigator({
-  Feed: {
-    screen: Feed,
-    navigationOptions: {
-      title: 'Feed',
-      header: null
-    }
-  },
+const SingleProductNavigation = StackNavigator({
   Product: {
-    screen: SingleProductNavigation,
+    screen: SingleProduct,
     navigationOptions: {
       title: 'Product',
       header: null
@@ -36,7 +26,7 @@ const ProductNavigation = StackNavigator({
       title: 'Profile',
       header: null
     }
-  }
+  },
 });
 
-export default ProductNavigation;
+export default SingleProductNavigation;

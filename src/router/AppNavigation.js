@@ -3,6 +3,8 @@ import {TabNavigator} from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ProductNavigation from './ProductNavigation';
+import CategoryNavigation from './CategoryNavigation';
+
 
 import Feed from '../components/Feed';
 import Search from '../components/Search';
@@ -24,7 +26,7 @@ const AppNavigation = TabNavigator({
     }
   },
   Search: {
-    screen: Search,
+    screen: CategoryNavigation,
     navigationOptions: {
       tabBarLabel: 'Search',
       tabBarIcon: ({focused}) => (

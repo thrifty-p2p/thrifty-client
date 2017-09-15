@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Platform} from 'react-native';
+import {View, Text, StyleSheet, Platform, Image} from 'react-native';
 
 import {Header, CardSection} from './common';
 
@@ -8,44 +8,44 @@ const Search = props => {
   return(
     <View style={container}>
       <Header isBackProp={false}/>
-
+      {console.log(props)}
       <CardSection>
         <View style={flexRow}>
           <View style={flexColumn}>
-            <Text>LEFT 1</Text>
+            <Text onPress={() => props.navigation.navigate('Category', {categoryID: 1})}>Men</Text>
           </View>
           <View style={flexColumn}>
-            <Text>RIGHT 1</Text>
+            <Text onPress={() => props.navigation.navigate('Category', {categoryID: 2})}>Woman</Text>
           </View>
         </View>
       </CardSection>
       <CardSection>
         <View style={flexRow}>
           <View style={flexColumn}>
-            <Text>LEFT 2</Text>
+            <Text onPress={() => props.navigation.navigate('Category', {categoryID: 3})}>Books</Text>
           </View>
           <View style={flexColumn}>
-            <Text>RIGHT 2</Text>
-          </View>
-        </View>
-      </CardSection>
-      <CardSection>
-        <View style={flexRow}>
-          <View style={flexColumn}>
-            <Text>LEFT 3</Text>
-          </View>
-          <View style={flexColumn}>
-            <Text>RIGHT 3</Text>
+            <Text onPress={() => props.navigation.navigate('Category', {categoryID: 4})}>Computers</Text>
           </View>
         </View>
       </CardSection>
       <CardSection>
         <View style={flexRow}>
           <View style={flexColumn}>
-            <Text>LEFT 4</Text>
+            <Text onPress={() => props.navigation.navigate('Category', {categoryID: 5})}>Electronics</Text>
           </View>
           <View style={flexColumn}>
-            <Text>RIGHT 4</Text>
+            <Text onPress={() => props.navigation.navigate('Category', {categoryID: 6})}>Clothing</Text>
+          </View>
+        </View>
+      </CardSection>
+      <CardSection>
+        <View style={flexRow}>
+          <View style={flexColumn}>
+            <Text onPress={() => props.navigation.navigate('Category', {categoryID: 7})}>CD/DVD</Text>
+          </View>
+          <View style={flexColumn}>
+            <Text onPress={() => props.navigation.navigate('Category', {categoryID: 8})}>Instruments</Text>
           </View>
         </View>
       </CardSection>

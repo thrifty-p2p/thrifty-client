@@ -1,5 +1,10 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+
+
+{/* <Text style={textStyle} onPress={() => props.navigation.goBack(null)}>BACK</Text>  */}
 
 const Header = props => {
   const {viewStyle, textStyle, imageStyle, Grid, Column, ColumnLeft, ColumnRight} = styles
@@ -7,7 +12,11 @@ const Header = props => {
     <View style={viewStyle}>
       <View style={Grid}>
         <View style={ColumnLeft}>
-          {props.isBackProp ? <Text style={textStyle} onPress={() => props.navigation.goBack()}>BACK</Text> : <Text></Text>}
+          {props.isBackProp ?
+            (<TouchableOpacity onPress={() => props.navigation.goBack(null)}>
+              <Ionicons name='ios-arrow-back' size={30} color='#FFF' />
+            </TouchableOpacity>)
+          : <Text></Text>}
         </View>
         <View style={Column}>
           <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo_main.png'}} style={imageStyle}/>
@@ -49,16 +58,16 @@ const styles = StyleSheet.create({
   },
   Column : {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   ColumnLeft : {
     flex: 1,
     alignItems: 'flex-start',
-    marginLeft: 5
+    marginLeft: 10
   },
   ColumnRight : {
     flex: 1,
     alignItems: 'flex-end',
-    marginRight: 5
+    marginRight: 10
   }
 });

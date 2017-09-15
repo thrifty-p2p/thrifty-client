@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, Linking} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+// import Moment from 'react-moment';
 
 import {Card, CardSection, Button} from './common';
 import ProductLayout from './ProductLayout';
 
-const ProductDetail = props => {
+
+const SingleProductDetail = props => {
 
 const {textContainer, thumbnail, thumbnailContainer, headerText, productImage, grid, linkStyle, priceStyle, textPadding} = styles;
 
@@ -16,15 +18,14 @@ const {seller, date_created, images, title, price, description} = props.product;
       <ProductLayout
         navigation={props.navigation}
         product={props.product} />
-
       <CardSection>
         <View style={grid}>
           <View style={priceStyle}>
             <Text>PRICE: $ {price}</Text>
           </View>
           <View style={{flex:1}}>
-            <Button onPress={() => props.navigation.navigate('Product', {productID: props.product.id})} color="#CCC">
-              INFO
+            <Button color="#CCC">
+              OFFER
             </Button>
           </View>
           <View style={{flex:1}}>
@@ -38,7 +39,7 @@ const {seller, date_created, images, title, price, description} = props.product;
   );
 }
 
-export default ProductDetail;
+export default SingleProductDetail;
 
 const styles = StyleSheet.create({
   thumbnailContainer: {
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
   grid: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   linkStyle: {
     color: 'blue',
