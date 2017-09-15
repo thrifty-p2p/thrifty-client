@@ -21,7 +21,6 @@ class SingleProduct extends Component {
   }
 
   renderProductById() {
-    console.log(this.props);
     if (this.props.isReceived) {
       return (
         <SingleProductDetail navigation={this.props.navigation} product={this.props.productById} />

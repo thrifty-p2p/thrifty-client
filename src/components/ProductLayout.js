@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Moment from 'react-moment';
 
 import {CardSection, Button} from './common';
 
@@ -23,22 +24,22 @@ const ProductLayout = props => {
     images,
     title,
     price,
-    description
+    description,
+    likes
   } = props.product;
 
   return (
     <View>
       <CardSection>
-        <View style={thumbnailContainer}>
+        <TouchableOpacity style={thumbnailContainer} onPress={() => props.navigation.navigate('UserProfile')}>
           <Image style={thumbnail} source={{
             uri: seller.profile_image_url
           }}/>
-        </View>
-        <View style={textContainer}>
-          <Text style={linkStyle} onPress={() => props.navigation.navigate('UserProfile')}>{seller.username}
-          </Text>
-          <Text style={{fontSize: 8}}>{date_created}</Text>
-        </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={textContainer} onPress={() => props.navigation.navigate('UserProfile')}>
+          <Text style={linkStyle}>{seller.username}</Text>
+          <Moment fromNow element={Text}>{date_created}</Moment>
+        </TouchableOpacity>
       </CardSection>
 
       <CardSection>
@@ -50,6 +51,7 @@ const ProductLayout = props => {
       <CardSection>
         <View style={grid}>
           <View style={iconStyle}>
+            {/* <Text>{likes}</Text> */}
             <Ionicons name='ios-heart' size={20} color='#000'/>
           </View>
 
@@ -120,6 +122,7 @@ const styles = StyleSheet.create({
   },
   iconStyle: {
     flex: 1,
-    alignItems: 'center'
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 });

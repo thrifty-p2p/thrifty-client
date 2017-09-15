@@ -14,7 +14,6 @@ class ProductsByCategory extends Component {
 
   renderByCategory() {
     if (this.props.isReceived) {
-      console.log(this.props.productsByCategory.products);
       return this.props.productsByCategory.products.map(product => {
         if(product.is_available) {
           return <ProductsByCategoryDetail key={product.id} product={product} navigation={this.props.navigation}/>;

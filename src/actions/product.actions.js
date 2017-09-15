@@ -36,7 +36,6 @@ export const fetchProductsByCategory = (categoryID) => {
     .then(response => {
       dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_SUCCESS, payload: response.data[0]});
     }).catch(error => {
-      console.log(error);
       dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_FAILURE, payload: error});''
     });
   };

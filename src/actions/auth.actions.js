@@ -46,10 +46,9 @@ export const logoutAccount = () => {
   return dispatch => {
     return accountLogout()
     .then(response => {
-      console.log(response);
       dispatch({type: auth.ACCOUNT_LOGOUT, isLoggedIn: false})
     }). catch(error => {
-      throw new Error(error);
+      throw new Error();
     });
   }
 };
@@ -59,7 +58,7 @@ const accountLogout = async () => {
     await AsyncStorage.multiRemove(['token', 'userID']);
     AlertIOS.alert('Logout Success!')
   } catch (error) {
-    console.log('AsyncStorage error: ' + error.message);
+    throw new Error();
   }
 };
 
