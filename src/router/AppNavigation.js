@@ -7,7 +7,6 @@ import CategoryNavigation from './CategoryNavigation';
 
 
 import Feed from '../components/Feed';
-import Search from '../components/Search';
 import NewProduct from '../components/NewProduct';
 import Notifications from '../components/Notifications';
 import Profile from '../components/Profile';

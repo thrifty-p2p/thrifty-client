@@ -7,16 +7,15 @@ import ProductLayout from './ProductLayout';
 
 const ProductDetail = props => {
 
-const {textContainer, thumbnail, thumbnailContainer, headerText, productImage, grid, linkStyle, priceStyle, textPadding} = styles;
+const {grid, priceStyle} = styles;
 
-const {seller, date_created, images, title, price, description} = props.product;
+const {price} = props.product;
 
   return(
     <Card>
       <ProductLayout
         navigation={props.navigation}
         product={props.product} />
-
       <CardSection>
         <View style={grid}>
           <View style={priceStyle}>
@@ -41,48 +40,14 @@ const {seller, date_created, images, title, price, description} = props.product;
 export default ProductDetail;
 
 const styles = StyleSheet.create({
-  thumbnailContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 5
-  },
-  thumbnail: {
-    width: 40,
-    height: 40,
-    borderRadius: 40 / 2,
-    borderColor: "#CCC",
-    borderWidth: 1
-  },
-  textContainer: {
-    flexDirection: "column",
-    justifyContent: "space-around",
-    paddingLeft: 7
-  },
-  headerText: {
-    fontSize: 14,
-    flexWrap: 'wrap'
-  },
-  productImage: {
-    height: 300,
-    flex: 1,
-    width: null
-  },
   grid: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-  },
-  linkStyle: {
-    color: 'blue',
-    fontWeight: '500',
-    paddingBottom: 0
   },
   priceStyle: {
     flex: 4,
     alignSelf: 'center',
     paddingLeft: 5
   },
-  textPadding: {
-    padding: 5,
-  }
 });

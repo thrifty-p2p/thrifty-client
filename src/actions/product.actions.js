@@ -14,7 +14,7 @@ export const fetchAllProducts = () => {
     }).catch(error => {
       dispatch({type: product.FETCH_ALL_PRODUCTS_FAILURE, payload: error});
     });
-  }
+  };
 };
 
 export const fetchProductById = (productID) => {
@@ -26,11 +26,18 @@ export const fetchProductById = (productID) => {
     }).catch(error => {
       dispatch({type: product.FETCH_PRODUCT_BY_ID_FAILURE, payload: error});
     });
-  }
+  };
 };
 
-export const fetchProductsByCategory = (category) => {
+export const fetchProductsByCategory = (categoryID) => {
   return dispatch => {
-
-  }
+    dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_REQUEST})
+    Axios.get(`${API_URL}/product/category/${categoryID}`)
+    .then(response => {
+      dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_SUCCESS, payload: response.data[0]});
+    }).catch(error => {
+      console.log(error);
+      dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_FAILURE, payload: error});''
+    });
+  };
 };

@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
 import {fetchProductById} from '../actions/product.actions';
 import {Header, Button, LoadingIcon, Card, CardSection} from './common';
 import SingleProductDetail from './SingleProductDetail';
@@ -22,6 +21,7 @@ class SingleProduct extends Component {
   }
 
   renderProductById() {
+    console.log(this.props);
     if (this.props.isReceived) {
       return (
         <SingleProductDetail navigation={this.props.navigation} product={this.props.productById} />
@@ -60,7 +60,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  const {isLoading, productById, isReceived} = state.products;
+  const {isLoading, productById, isReceived} = state.productById;
   return {isLoading, productById, isReceived};
 }
 

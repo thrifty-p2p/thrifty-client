@@ -5,63 +5,60 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {CardSection, Button} from './common';
 
 const ProductLayout = props => {
+  const {
+    textContainer,
+    thumbnail,
+    thumbnailContainer,
+    headerText,
+    productImage,
+    grid,
+    linkStyle,
+    textPadding,
+    iconStyle
+  } = styles;
 
-const {
-  textContainer,
-  thumbnail,
-  thumbnailContainer,
-  headerText,
-  productImage,
-  grid,
-  linkStyle,
-  priceStyle,
-  textPadding,
-  iconStyle
-} = styles;
+  const {
+    seller,
+    date_created,
+    images,
+    title,
+    price,
+    description
+  } = props.product;
 
-const {
-  seller,
-  date_created,
-  images,
-  title,
-  price,
-  description
-} = props.product;
-
-  return(
+  return (
     <View>
       <CardSection>
-
         <View style={thumbnailContainer}>
-          <Image style={thumbnail} source={{uri: props.product.seller.profile_image_url}}/>
+          <Image style={thumbnail} source={{
+            uri: seller.profile_image_url
+          }}/>
         </View>
         <View style={textContainer}>
-          <Text
-            style={linkStyle}
-            onPress={() => props.navigation.navigate('UserProfile')}>{props.product.seller.username}
+          <Text style={linkStyle} onPress={() => props.navigation.navigate('UserProfile')}>{seller.username}
           </Text>
-          <Text
-            style={{fontSize: 8}}>{props.product.date_created}
-          </Text>
+          <Text style={{fontSize: 8}}>{date_created}</Text>
         </View>
       </CardSection>
 
       <CardSection>
-        <Image style={productImage} source={{uri: props.product.images["0"].image_url}}/>
+        <Image style={productImage} source={{
+          uri: images["0"].image_url
+        }}/>
       </CardSection>
 
       <CardSection>
         <View style={grid}>
           <View style={iconStyle}>
-            <Ionicons name='ios-heart' size={20} color='#000' />
+            <Ionicons name='ios-heart' size={20} color='#000'/>
           </View>
 
           <View style={iconStyle}>
-            <Ionicons name='ios-text' size={20} color='#000' />
+            <Ionicons name='ios-text' size={20} color='#000'/>
           </View>
 
           <View style={iconStyle}>
-            <Ionicons name='ios-share-alt' size={20} color='#000' />
+            <Ionicons name='ios-share-alt' size={20} color='#000'/>
           </View>
         </View>
       </CardSection>
@@ -111,20 +108,18 @@ const styles = StyleSheet.create({
   grid: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   linkStyle: {
     color: 'blue',
     fontWeight: '500',
     paddingBottom: 0
   },
-  priceStyle: {
-    flex: 4,
-    alignSelf: 'center',
-    paddingLeft: 5
-  },
   textPadding: {
-    padding: 5,
+    padding: 5
   },
-  iconStyle: {flex: 1, alignItems: 'center'}
+  iconStyle: {
+    flex: 1,
+    alignItems: 'center'
+  }
 });

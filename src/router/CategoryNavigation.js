@@ -1,22 +1,22 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation'
 
-import Search from '../components/Search';
-import ByCategory from '../components/ByCategory';
+import Categories from '../components/Categories';
+import ProductsByCategory from '../components/ProductsByCategory';
 import SingleProduct from '../components/SingleProduct';
 import Checkout from '../components/Checkout';
 import UserProfile from '../components/UserProfile';
 
 const CategoryNavigation = StackNavigator({
-  Search: {
-    screen: Search,
+  Categories: {
+    screen: Categories,
     navigationOptions: {
       title: 'Search',
       header: null
     }
   },
   Category: {
-    screen: ByCategory,
+    screen: ProductsByCategory,
     navigationOptions: {
       title: 'Category',
       header: null
