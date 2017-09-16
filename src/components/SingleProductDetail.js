@@ -10,8 +10,6 @@ const {grid, priceStyle} = styles;
 
 const {price} = props.product;
 
-console.log(props);
-
   return(
     <Card>
       <ProductLayout

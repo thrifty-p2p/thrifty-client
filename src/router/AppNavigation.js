@@ -4,10 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ProductNavigation from './ProductNavigation';
 import CategoryNavigation from './CategoryNavigation';
+import NewProductNavigation from './NewProductNavigation';
 
-
-import Feed from '../components/Feed';
-import NewProduct from '../components/NewProduct';
 import Notifications from '../components/Notifications';
 import Profile from '../components/Profile';
 
@@ -37,7 +35,7 @@ const AppNavigation = TabNavigator({
     }
   },
   'NewProduct': {
-    screen: NewProduct,
+    screen: NewProductNavigation,
     navigationOptions: {
       tabBarLabel: 'Add',
       tabBarIcon: ({focused}) => (

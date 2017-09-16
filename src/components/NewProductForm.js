@@ -3,16 +3,17 @@ import {View, Text, StyleSheet, Platform} from 'react-native';
 
 import {Header} from './common';
 
-const NewProduct = props => {
+const NewProductFrom = props => {
   return(
     <View style={styles.container}>
-      <Header isBackProp={false}/>
-      <Text>New Product</Text>
+      <Header isBackProp={true} navigation={props.navigation}/>
+      {console.log(props.navigation.state.params.selected)}
+      <Text>New Product From</Text>
     </View>
   );
 }
 
-export default NewProduct;
+export default NewProductFrom;
 
 const styles = StyleSheet.create({
   container: {
