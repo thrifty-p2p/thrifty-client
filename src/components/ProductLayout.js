@@ -36,10 +36,14 @@ const ProductLayout = props => {
             uri: seller.profile_image_url
           }}/>
         </TouchableOpacity>
-        <TouchableOpacity style={textContainer} onPress={() => props.navigation.navigate('UserProfile')}>
-          <Text style={linkStyle}>{seller.username}</Text>
-          <Moment fromNow element={Text}>{date_created}</Moment>
-        </TouchableOpacity>
+        <View style={{alignSelf: 'center'}}>
+          <TouchableOpacity style={textContainer} onPress={() => props.navigation.navigate('UserProfile')}>
+            <Text style={linkStyle}>{seller.username}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={textContainer}>
+            <Moment fromNow element={Text} style={{fontSize: 10}}>{date_created}</Moment>
+          </TouchableOpacity>
+        </View>
       </CardSection>
 
       <CardSection>
@@ -96,7 +100,9 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: "column",
     justifyContent: "space-around",
-    paddingLeft: 7
+    paddingLeft: 7,
+    paddingBottom: 0,
+    marginBottom: 0
   },
   headerText: {
     fontSize: 14,
@@ -114,8 +120,7 @@ const styles = StyleSheet.create({
   },
   linkStyle: {
     color: 'blue',
-    fontWeight: '500',
-    paddingBottom: 0
+    fontWeight: '600'
   },
   textPadding: {
     padding: 5

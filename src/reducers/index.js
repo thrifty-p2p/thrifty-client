@@ -9,5 +9,5 @@ export default combineReducers({
   auth: AuthReducer,
   products: ProductReducer,
   productById: ProductByIdReducer,
-  productsByCategory: ProductsByCategoryReducer
+  productsByCategory: ProductsByCategoryReducer,
 });
