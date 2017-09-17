@@ -34,7 +34,7 @@ class NewProduct extends Component {
           removeClippedSubviews={false}
           groupTypes='SavedPhotos'
           batchSize={5}
-          maximum={3}
+          maximum={1}
           selected={this.state.selected}
           assetType='Photos'
           imagesPerRow={3}
