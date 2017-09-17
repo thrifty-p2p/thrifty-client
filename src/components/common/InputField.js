@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, View, Text, StyleSheet } from 'react-native';
 
 const InputField = props => {
-  const { label, value, onChangeText, placeholder, secureTextEntry } = props;
+  const { label, value, onChangeText, placeholder, secureTextEntry, multiline, numberOfLines } = props;
   const { inputStyle, labelStyle, containerStyle } = styles;
   return(
     <View style={containerStyle}>
@@ -14,6 +14,8 @@ const InputField = props => {
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
+        multiline={false || multiline}
+        numberOfLines={numberOfLines || 1}
       />
     </View>
   );

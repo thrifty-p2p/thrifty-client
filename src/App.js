@@ -9,14 +9,6 @@ import RootNavigation from './router/RootNavigation';
 import isLoggedIn from './utilities/isLoggedIn';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentWillMount() {
-
-  }
-
   render() {
     const store = createStore(Reducers, {}, applyMiddleware(Thunk));
 

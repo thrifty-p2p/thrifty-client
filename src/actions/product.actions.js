@@ -36,7 +36,42 @@ export const fetchProductsByCategory = (categoryID) => {
     .then(response => {
       dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_SUCCESS, payload: response.data[0]});
     }).catch(error => {
-      dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_FAILURE, payload: error});''
+      dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_FAILURE, payload: error});
     });
+  };
+};
+
+export const s3ImageUpload = (image) => {
+  return dispatch => {
+    dispatch({type: product.FETCH_S3_SIGNED_REQUEST})
+    Axios.get(`${API_URL}/sign-s3?file-name=${image.filename}`)
+    .then(response => {
+      const file = {
+        uri: image.uri
+      }
+      dispatch({type: product.FETCH_S3_SIGNED_SUCCESS, payload: response.data.url});
+      uploadFile(file.uri, response.data.signedRequest, response.data.url);
+    }).catch(error => {
+      dispatch({type: product.FETCH_S3_SIGNED_FAILUR, payload: error.response});
+    });
+  };
+};
+
+const uploadFile = (file, signedRequestURL, url) => {
+  Axios.put(signedRequestURL, file)
+    .then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error.response);
+    });
+}
+
+export const updateNewProductForm = ({property, value}) => {
+  return {
+    type: product.PRODUCT_FORM_UPDATE,
+    payload: {
+      property,
+      value
+    }
   };
 };
