@@ -12,7 +12,7 @@ class RootNavigation extends Component {
       return <AppNavigation />
     }
     return (
-      //<LandingNavigation />
+      // <LandingNavigation />
       <AppNavigation />
     );
   }

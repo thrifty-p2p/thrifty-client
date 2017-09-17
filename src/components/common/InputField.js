@@ -14,8 +14,6 @@ const InputField = props => {
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
-        multiline={false || multiline}
-        numberOfLines={numberOfLines || 1}
       />
     </View>
   );

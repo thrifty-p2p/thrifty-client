@@ -14,9 +14,17 @@ class ProductsByCategory extends Component {
 
   renderByCategory() {
     if (this.props.isReceived) {
-      return this.props.productsByCategory.products.map(product => {
+      const sortProductsByDate = this.props.productsByCategory.products.sort((a,b) => {
+        return new Date(b.date_created) - new Date(a.date_created);
+      });
+      return sortProductsByDate.map(product => {
         if(product.is_available) {
-          return <ProductsByCategoryDetail key={product.id} product={product} navigation={this.props.navigation}/>;
+          return (
+            <ProductsByCategoryDetail
+              key={product.id}
+              product={product}
+              navigation={this.props.navigation}/>
+          );
         }
       });
     };

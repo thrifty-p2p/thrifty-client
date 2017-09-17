@@ -13,7 +13,10 @@ class Feed extends React.Component {
   }
 
   renderProducts() {
-    return this.props.products.map(product => {
+    const sortProductsByDate = this.props.products.sort((a,b) => {
+      return new Date(b.date_created) - new Date(a.date_created);
+    });
+    return sortProductsByDate.map(product => {
       if(product.is_available) {
         return <ProductDetail key={product.id} product={product} navigation={this.props.navigation}/>;
       }

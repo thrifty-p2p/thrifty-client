@@ -21,8 +21,8 @@ const {price} = props.product;
             <Text>PRICE: $ {price}</Text>
           </View>
           <View style={{flex:1}}>
-            <Button color="#CCC">
-              OFFER
+            <Button onPress={() => props.navigation.navigate('Product', {productID: props.product.id})} color="#CCC">
+              INFO
             </Button>
           </View>
           <View style={{flex:1}}>
