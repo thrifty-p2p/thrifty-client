@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: '#DDD',
-    borderBottomWidth: 0,
+    borderColor: '#ADADAC',
+    borderBottomWidth: 1,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

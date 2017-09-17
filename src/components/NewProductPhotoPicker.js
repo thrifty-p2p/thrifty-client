@@ -44,7 +44,7 @@ class NewProduct extends Component {
         <CardSection>
           <Button
             onPress={() => this.props.navigation.navigate('NewProductForm', {selected: this.state.selected})}
-            color="#D62246">
+            color="#1cfeba">
 
             ADD PRODUCT
 

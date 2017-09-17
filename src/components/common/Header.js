@@ -19,7 +19,7 @@ const Header = props => {
           : <Text></Text>}
         </View>
         <View style={Column}>
-          <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo_main.png'}} style={imageStyle}/>
+          <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo.png'}} style={imageStyle}/>
         </View>
         <View style={ColumnRight}>
           <Text style={textStyle}>{props.title}</Text>
@@ -34,7 +34,7 @@ export { Header };
 
 const styles = StyleSheet.create({
   viewStyle: {
-    backgroundColor: '#333',
+    backgroundColor: '#1e201c',
     alignItems: 'center',
     height: 50,
     paddingTop: 15,

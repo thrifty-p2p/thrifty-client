@@ -12,12 +12,12 @@ const LandingScreen = props => {
       </View>
       <View style={buttons}>
         <View style={btnContainer}>
-          <Button onPress={() => props.navigation.navigate('Login')} color="#D62246">
+          <Button onPress={() => props.navigation.navigate('Login')} color="#1CFEBA">
             LOGIN
           </Button>
         </View>
         <View style={btnContainer}>
-          <Button onPress={() => props.navigation.navigate('Signup')} color="#D62246">
+          <Button onPress={() => props.navigation.navigate('Signup')} color="#1CFEBA">
             SIGN UP
           </Button>
         </View>

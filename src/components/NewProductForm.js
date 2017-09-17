@@ -36,10 +36,14 @@ class NewProductFrom extends Component {
       color: this.props.color,
       category_names: [this.state.category],
       image_url: `https://thrifty-p2p.s3.amazonaws.com/${imageObject.filename}`,
-      seller_id: this.state.UID
+      seller_id: 1
+      // this.state.UID
+      // Seller ID hard coded until I can get AWS to work with Bearer Auth
     }
 
     await this.props.createNewProduct(product);
+
+    this.setState({category: ''})
 
   }
 
@@ -104,7 +108,7 @@ class NewProductFrom extends Component {
           </Picker>
         </CardSection>
 
-        <Button onPress={this.onSubmitNewProduct.bind(this)} color="#D62246">
+        <Button onPress={this.onSubmitNewProduct.bind(this)} color="#1CFEBA">
           CREATE PRODUCT
         </Button>
       </ScrollView>

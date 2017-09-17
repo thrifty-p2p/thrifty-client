@@ -55,16 +55,15 @@ const ProductLayout = props => {
       <CardSection>
         <View style={grid}>
           <View style={iconStyle}>
-            {/* <Text>{likes}</Text> */}
-            <Ionicons name='ios-heart' size={20} color='#000'/>
+            <Ionicons name='ios-heart' size={20} color='#5B5F97'/>
           </View>
 
           <View style={iconStyle}>
-            <Ionicons name='ios-text' size={20} color='#000'/>
+            <Ionicons name='ios-text' size={20} color='#5B5F97'/>
           </View>
 
           <View style={iconStyle}>
-            <Ionicons name='ios-share-alt' size={20} color='#000'/>
+            <Ionicons name='ios-share-alt' size={20} color='#5B5F97'/>
           </View>
         </View>
       </CardSection>
@@ -75,7 +74,7 @@ const ProductLayout = props => {
 
       <CardSection>
         <Text style={textPadding}>
-          DESCRIPTION: {description}
+          {description}
         </Text>
       </CardSection>
     </View>
@@ -119,7 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   linkStyle: {
-    color: 'blue',
+    color: '#5B5F97',
     fontWeight: '600'
   },
   textPadding: {
@@ -128,6 +127,8 @@ const styles = StyleSheet.create({
   iconStyle: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingBottom: 3,
+    paddingTop: 3
   }
 });
