@@ -6,6 +6,7 @@ import ProductByIdReducer from './productById.reducer';
 import ProductsByCategoryReducer from './productsByCategory.reducer';
 import ProductsByAccountReducer from './productsByAccount.reducer';
 import NewProductReducer from './productNew.reducer';
+import ProfileReducer from './profile.reducer';
 
 export default combineReducers({
   auth: AuthReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   productById: ProductByIdReducer,
   productsByCategory: ProductsByCategoryReducer,
   productsByAccount: ProductsByAccountReducer,
-  newProduct: NewProductReducer
+  newProduct: NewProductReducer,
+  profile: ProfileReducer
 });

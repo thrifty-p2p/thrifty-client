@@ -18,7 +18,7 @@ const UserProfileDetail = (props) => {
           </TouchableOpacity>
         </CardSection>
         <CardSection>
-          <Text style={{fontSize: 12}}>
+          <Text style={styles.titleText}>
             {title.substr(0, 20).toUpperCase()}
           </Text>
         </CardSection>
@@ -35,5 +35,6 @@ const UserProfileDetail = (props) => {
 export default UserProfileDetail;
 
 const styles = StyleSheet.create({
-  thumbnail: {height: 150, width: 175}
+  thumbnail: {height: 150, width: 175},
+  titleText: {fontSize: 12, paddingLeft: 5}
 });

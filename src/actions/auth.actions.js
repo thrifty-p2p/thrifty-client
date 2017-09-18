@@ -14,7 +14,7 @@ export const updateAccountForm = ({property, value}) => {
   };
 };
 
-export const createNewAccount = user => {
+export const createNewAccount = (user) => {
   return dispatch => {
       dispatch({type: auth.ACCOUNT_SIGNUP_REQUEST});
     Axios.post(`${AUTH_URL}/signup`, user)
@@ -28,7 +28,7 @@ export const createNewAccount = user => {
   };
 };
 
-export const loginAccount = credentials => {
+export const loginAccount = (credentials) => {
   return dispatch => {
       dispatch({type: auth.ACCOUNT_LOGIN_REQUEST});
     Axios.post(`${AUTH_URL}/login`, credentials)
