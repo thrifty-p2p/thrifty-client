@@ -25,7 +25,7 @@ class Login extends Component {
 
           <InputField
             label="EMAIL"
-            placeholder="example@mail.com"
+            placeholder="Example@mail.com"
             onChangeText={value => this.props.updateAccountForm({property: 'email', value})}
             value={this.props.email}
           />
@@ -35,7 +35,7 @@ class Login extends Component {
           <InputField
             secureTextEntry
             label="PASSWORD"
-            placeholder="password"
+            placeholder="Password"
             onChangeText={value => this.props.updateAccountForm({property: 'password', value})}
             value={this.props.password}
           />

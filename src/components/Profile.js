@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 
 import {CardSection, InputField, Button, Header, LoadingIcon} from './common';
 import {logoutAccount} from '../actions/auth.actions';
-import {fetchAccountByID, updateProfileForm} from '../actions/profile.actions';
+// import {fetchAccountByID, updateProfileForm} from '../actions/profile.actions';
 
 class Profile extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Profile extends Component {
     await AsyncStorage.getItem('userID')
       .then( userID => UID = userID)
       .catch(error => console.error(error));
-    await this.props.fetchAccountByID(10);
+    // await this.props.fetchAccountByID(1);
   }
 
   onLogout() {
@@ -89,7 +89,7 @@ class Profile extends Component {
           <InputField
             label="STATE"
             placeholder="State"
-            onChangeText={value => this.props.updateProfileForm({property: 'state', value})}
+            onChangeText={value => this.props.updateProfileForm({property: 'st', value})}
             value={this.props.st}/>
         </CardSection>
 
@@ -121,7 +121,6 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.profile);
   const {isLoading, isReceived, first_name, last_name, email, username, address, city, st, zip} = state.profile;
   return {
     isLoading,
@@ -140,8 +139,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     logoutAccount,
-    fetchAccountByID,
-    updateProfileForm
+    // fetchAccountByID,
+    // updateProfileForm
   }, dispatch);
 };
 

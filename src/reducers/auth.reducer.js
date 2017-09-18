@@ -2,18 +2,14 @@ import * as auth from '../actions/action.types';
 
 const INITIAL_STATE = {
   isLoading: false,
-  isLoggedIn: false,
+  isLoggedIn: true,
   isReceived: false,
   error: '',
   first_name: '',
   last_name: '',
   username: '',
   email: '',
-  password: '',
-  address: '',
-  city: '',
-  st: '',
-  zip: '',
+  password: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
