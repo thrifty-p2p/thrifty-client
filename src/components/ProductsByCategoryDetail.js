@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, Linking} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Card, CardSection, Button} from './common';
 import ProductLayout from './ProductLayout';

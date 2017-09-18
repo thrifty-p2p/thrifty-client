@@ -2,10 +2,6 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-
-
-{/* <Text style={textStyle} onPress={() => props.navigation.goBack(null)}>BACK</Text>  */}
-
 const Header = props => {
   const {viewStyle, textStyle, imageStyle, Grid, Column, ColumnLeft, ColumnRight} = styles
   return(
@@ -31,17 +27,16 @@ const Header = props => {
 
 export { Header };
 
-
 const styles = StyleSheet.create({
   viewStyle: {
     backgroundColor: '#1e201c',
     alignItems: 'center',
-    height: 50,
-    paddingTop: 15,
+    height: 55,
+    paddingTop: 12,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2},
     shadowOpacity: 0.2,
-    elevation: 2,
+    elevation: 3,
     position: 'relative',
   },
   textStyle: {
@@ -54,11 +49,11 @@ const styles = StyleSheet.create({
   },
   Grid : {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   Column : {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   ColumnLeft : {
     flex: 1,

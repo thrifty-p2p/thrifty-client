@@ -7,8 +7,8 @@ const LandingScreen = props => {
   const {container, body, image, buttons, btnContainer} = styles;
   return(
     <View style={container}>
-      <View style={body}>
-        <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo_main.png'}} style={image} />
+      <View>
+        <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo.png'}} style={image} />
       </View>
       <View style={buttons}>
         <View style={btnContainer}>
@@ -36,12 +36,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: Platform.OS === 'ios' ? 20 : 0
   },
-  body: {
-
-  },
   image: {
     height: 100,
-    width: 200,
+    width: 250,
     justifyContent: 'center'
   },
   buttons: {

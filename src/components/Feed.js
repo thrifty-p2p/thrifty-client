@@ -34,7 +34,7 @@ class Feed extends React.Component {
     return (
       <View style={styles.container}>
         <Header isBackProp={false}/>
-        <ScrollView style={{marginBottom: 50}}>
+        <ScrollView style={{marginBottom: 56}}>
           {this.renderProducts()}
         </ScrollView>
       </View>

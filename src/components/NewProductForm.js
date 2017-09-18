@@ -36,7 +36,7 @@ class NewProductFrom extends Component {
       color: this.props.color,
       category_names: [this.state.category],
       image_url: `https://thrifty-p2p.s3.amazonaws.com/${imageObject.filename}`,
-      seller_id: 1
+      seller_id: this.state.UID
       // this.state.UID
       // Seller ID hard coded until I can get AWS to work with Bearer Auth
     }
@@ -49,7 +49,7 @@ class NewProductFrom extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <Header isBackProp={true} navigation={this.props.navigation}/>
         <Image source={{uri: this.props.navigation.state.params.selected[0].uri}} style={styles.productImage}/>
         <CardSection>
@@ -108,10 +108,13 @@ class NewProductFrom extends Component {
           </Picker>
         </CardSection>
 
-        <Button onPress={this.onSubmitNewProduct.bind(this)} color="#1CFEBA">
-          CREATE PRODUCT
-        </Button>
-      </ScrollView>
+        <CardSection>
+          <Button onPress={this.onSubmitNewProduct.bind(this)} color="#1CFEBA">
+            CREATE PRODUCT
+          </Button>
+        </CardSection>
+
+      </View>
     );
   }
 }
@@ -132,7 +135,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(NewProductFrom);
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === 'ios' ? 20 : 0
+    flex: 1,
+    marginTop: Platform.OS === 'ios' ? 20 : 0,
+    justifyContent: 'space-between'
   },
   productImage: {
     height: 300,

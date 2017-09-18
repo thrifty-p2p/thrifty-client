@@ -41,7 +41,7 @@ class ProductsByCategory extends Component {
     return (
       <View style={styles.container}>
         <Header isBackProp={true} navigation={this.props.navigation}/>
-        <ScrollView style={{marginBottom: 50}}>
+        <ScrollView style={{marginBottom: 56}}>
           {this.renderByCategory()}
         </ScrollView>
       </View>

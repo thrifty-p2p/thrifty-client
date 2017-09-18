@@ -13,7 +13,7 @@ export const fetchAllProducts = () => {
         dispatch({type: product.FETCH_ALL_PRODUCTS_SUCCESS, payload: response.data});
       }, 500);
     }).catch(error => {
-      dispatch({type: product.FETCH_ALL_PRODUCTS_FAILURE, payload: error});
+      dispatch({type: product.FETCH_ALL_PRODUCTS_FAILURE, payload: error.response});
     });
   };
 };
@@ -24,7 +24,7 @@ export const fetchProductById = (productID) => {
     Axios.get(`${API_URL}/product/${productID}`).then(response => {
       dispatch({type: product.FETCH_PRODUCT_BY_ID_SUCCESS, payload: response.data[0]});
     }).catch(error => {
-      dispatch({type: product.FETCH_PRODUCT_BY_ID_FAILURE, payload: error});
+      dispatch({type: product.FETCH_PRODUCT_BY_ID_FAILURE, payload: error.response});
     });
   };
 };
@@ -36,7 +36,19 @@ export const fetchProductsByCategory = (categoryID) => {
     .then(response => {
       dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_SUCCESS, payload: response.data[0]});
     }).catch(error => {
-      dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_FAILURE, payload: error});
+      dispatch({type: product.FETCH_PRODUCT_BY_CATEGORY_FAILURE, payload: error.response});
+    });
+  };
+};
+
+export const fetchProductsByAccount = (profileID) => {
+  return dispatch => {
+    dispatch({type: product.FETCH_PRODUCTS_BY_ACCOUNT_REQUEST})
+    Axios.get(`${API_URL}/account/${profileID}`)
+    .then(response => {
+      dispatch({type: product.FETCH_PRODUCTS_BY_ACCOUNT_SUCCESS, payload: response.data[0]});
+    }).catch(error => {
+      dispatch({type: product.FETCH_PRODUCTS_BY_ACCOUNT_FAILURE, payload: error.response});
     });
   };
 };

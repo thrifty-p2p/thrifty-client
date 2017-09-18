@@ -31,13 +31,15 @@ const ProductLayout = props => {
   return (
     <View>
       <CardSection>
-        <TouchableOpacity style={thumbnailContainer} onPress={() => props.navigation.navigate('UserProfile')}>
+        <TouchableOpacity style={thumbnailContainer}
+          onPress={() => props.navigation.navigate('UserProfile', {sellerID: props.product.seller_id})}>
           <Image style={thumbnail} source={{
             uri: seller.profile_image_url
           }}/>
         </TouchableOpacity>
         <View style={{alignSelf: 'center'}}>
-          <TouchableOpacity style={textContainer} onPress={() => props.navigation.navigate('UserProfile')}>
+          <TouchableOpacity style={textContainer}
+            onPress={() => props.navigation.navigate('UserProfile', {sellerID: props.product.seller_id})}>
             <Text style={linkStyle}>{seller.username}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={textContainer}>
@@ -69,7 +71,7 @@ const ProductLayout = props => {
       </CardSection>
 
       <CardSection>
-        <Text style={textPadding}>{title.substr(0, 30)}</Text>
+        <Text style={textPadding}>{title.substr(0, 30).toUpperCase()}</Text>
       </CardSection>
 
       <CardSection>
