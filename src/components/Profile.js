@@ -18,7 +18,7 @@ class Profile extends Component {
     await AsyncStorage.getItem('userID')
       .then( userID => UID = userID)
       .catch(error => console.error(error));
-    await this.props.fetchAccountByID(10);
+    // await this.props.fetchAccountByID(1);
   }
 
   onLogout() {
@@ -89,7 +89,7 @@ class Profile extends Component {
           <InputField
             label="STATE"
             placeholder="State"
-            onChangeText={value => this.props.updateProfileForm({property: 'state', value})}
+            onChangeText={value => this.props.updateProfileForm({property: 'st', value})}
             value={this.props.st}/>
         </CardSection>
 

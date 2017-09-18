@@ -40,7 +40,7 @@ class Signup extends Component {
         <CardSection>
           <InputField
             label="EMAIL"
-            placeholder="example@mail.com"
+            placeholder="Example@mail.com"
             onChangeText={value => this.props.updateAccountForm({property: 'email', value})}
             value={this.props.email}/>
         </CardSection>
@@ -57,13 +57,13 @@ class Signup extends Component {
           <InputField
             secureTextEntry
             label="PASSWORD"
-            placeholder="password"
+            placeholder="Password"
             onChangeText={value => this.props.updateAccountForm({property: 'password', value})}
             value={this.props.password}/>
         </CardSection>
 
         <CardSection>
-          <Button onPress={this.onButtonPress} color="#D62246">
+          <Button onPress={this.onButtonPress} color="#1CFEBA">
             SIGN UP
           </Button>
         </CardSection>
