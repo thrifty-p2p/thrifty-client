@@ -36,7 +36,7 @@ class NewProductFrom extends Component {
       color: this.props.color,
       category_names: [this.state.category],
       image_url: `https://thrifty-p2p.s3.amazonaws.com/${imageObject.filename}`,
-      seller_id: this.state.UID
+      seller_id: 5
       // this.state.UID
       // Seller ID hard coded until I can get AWS to work with Bearer Auth
     }
@@ -45,6 +45,7 @@ class NewProductFrom extends Component {
 
     this.setState({category: ''})
 
+    // await this.props.navigation.navigate('ProductNavigation')
   }
 
   render() {

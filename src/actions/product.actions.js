@@ -59,7 +59,7 @@ export const s3ImageUpload = (image) => {
     Axios.get(`${API_URL}/sign-s3?file-name=${image.filename}`)
     .then(response => {
       dispatch({type: product.FETCH_S3_SIGNED_SUCCESS, payload: response.data.url});
-      uploadFile(image.uri, response.data.signedRequest, response.data.url);
+      uploadFile(image, response.data.signedRequest, response.data.url);
     }).catch(error => {
       dispatch({type: product.FETCH_S3_SIGNED_FAILURE, payload: error.response});
     });
@@ -67,12 +67,21 @@ export const s3ImageUpload = (image) => {
 };
 
 const uploadFile = (file, signedRequestURL, url) => {
-  Axios.put(signedRequestURL, file)
+  const image = {
+    uri: file.uri,
+    type: 'image/jpeg',
+    name: file.filename
+  }
+  let data = new FormData();
+  data.append('file', image);
+  console.log(data);
+  Axios.put(signedRequestURL, data)
   .then(response => {
     console.log(response);
   }).catch(error => {
     console.log(error.response);
   });
+
 }
 
 export const updateNewProductForm = ({property, value}) => {
