@@ -31,13 +31,15 @@ const ProductLayout = props => {
   return (
     <View>
       <CardSection>
-        <TouchableOpacity style={thumbnailContainer} onPress={() => props.navigation.navigate('UserProfile')}>
+        <TouchableOpacity style={thumbnailContainer}
+          onPress={() => props.navigation.navigate('UserProfile', {sellerID: props.product.seller_id})}>
           <Image style={thumbnail} source={{
             uri: seller.profile_image_url
           }}/>
         </TouchableOpacity>
         <View style={{alignSelf: 'center'}}>
-          <TouchableOpacity style={textContainer} onPress={() => props.navigation.navigate('UserProfile')}>
+          <TouchableOpacity style={textContainer}
+            onPress={() => props.navigation.navigate('UserProfile', {sellerID: props.product.seller_id})}>
             <Text style={linkStyle}>{seller.username}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={textContainer}>
@@ -55,27 +57,26 @@ const ProductLayout = props => {
       <CardSection>
         <View style={grid}>
           <View style={iconStyle}>
-            {/* <Text>{likes}</Text> */}
-            <Ionicons name='ios-heart' size={20} color='#000'/>
+            <Ionicons name='ios-heart' size={20} color='#5B5F97'/>
           </View>
 
           <View style={iconStyle}>
-            <Ionicons name='ios-text' size={20} color='#000'/>
+            <Ionicons name='ios-text' size={20} color='#5B5F97'/>
           </View>
 
           <View style={iconStyle}>
-            <Ionicons name='ios-share-alt' size={20} color='#000'/>
+            <Ionicons name='ios-share-alt' size={20} color='#5B5F97'/>
           </View>
         </View>
       </CardSection>
 
       <CardSection>
-        <Text style={textPadding}>{title.substr(0, 30)}</Text>
+        <Text style={textPadding}>{title.substr(0, 30).toUpperCase()}</Text>
       </CardSection>
 
       <CardSection>
         <Text style={textPadding}>
-          DESCRIPTION: {description}
+          {description}
         </Text>
       </CardSection>
     </View>
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   linkStyle: {
-    color: 'blue',
+    color: '#5B5F97',
     fontWeight: '600'
   },
   textPadding: {
@@ -128,6 +129,8 @@ const styles = StyleSheet.create({
   iconStyle: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingBottom: 3,
+    paddingTop: 3
   }
 });

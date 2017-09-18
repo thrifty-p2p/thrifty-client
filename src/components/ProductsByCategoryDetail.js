@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, Linking} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Card, CardSection, Button} from './common';
 import ProductLayout from './ProductLayout';
@@ -18,15 +18,15 @@ const {price} = props.product;
       <CardSection>
         <View style={grid}>
           <View style={priceStyle}>
-            <Text>PRICE: $ {price}</Text>
+            <Text>${price}</Text>
           </View>
           <View style={{flex:1}}>
-            <Button color="#CCC">
-              OFFER
+            <Button onPress={() => props.navigation.navigate('Product', {productID: props.product.id})} color="#9d8df1">
+              INFO
             </Button>
           </View>
           <View style={{flex:1}}>
-            <Button onPress={() => props.navigation.navigate('Checkout')} color="#D62246">
+            <Button onPress={() => props.navigation.navigate('Checkout')} color="#1cfeba">
               BUY
             </Button>
           </View>

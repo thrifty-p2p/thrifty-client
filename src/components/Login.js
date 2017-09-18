@@ -42,7 +42,7 @@ class Login extends Component {
         </CardSection>
 
         <CardSection>
-          <Button onPress={this.onButtonPress} color="#D62246">
+          <Button onPress={this.onButtonPress} color="#1CFEBA">
             LOGIN
           </Button>
         </CardSection>

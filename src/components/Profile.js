@@ -22,7 +22,7 @@ class Profile extends Component {
       <View style={styles.container}>
         <Header isBackProp={false}/>
         <CardSection>
-          <Button onPress={this.onLogout} color="#D62246">LOGOUT</Button>
+          <Button onPress={this.onLogout} color="#1cfeba">LOGOUT</Button>
         </CardSection>
       </View>
     );

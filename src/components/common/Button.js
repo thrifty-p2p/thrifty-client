@@ -23,10 +23,11 @@ const styles = StyleSheet.create({
 
   text: {
     alignSelf: "center",
-    color: "#FFF",
+    color: "#1e201c",
     fontWeight: "700",
     paddingTop: 10,
     paddingBottom: 10,
-    fontSize: 12
+    fontSize: 12,
+    marginBottom: 0
   }
 })

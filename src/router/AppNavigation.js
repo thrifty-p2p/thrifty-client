@@ -1,6 +1,6 @@
 import React from 'react';
 import {TabNavigator} from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 import ProductNavigation from './ProductNavigation';
 import CategoryNavigation from './CategoryNavigation';
@@ -13,48 +13,48 @@ const AppNavigation = TabNavigator({
   ProductNavigation: {
     screen: ProductNavigation,
     navigationOptions: {
-      tabBarLabel: 'Feed',
+      tabBarLabel: 'FEED',
       tabBarIcon: ({focused}) => (
-        <Ionicons
-          name='ios-people'
-          size={30}
-          color={focused ? '#000' : '#D62246'} />
+        <SimpleLineIcons
+          name='feed'
+          size={23}
+          color={focused ? '#1CFEBA' : '#9d8df1'} />
       )
     }
   },
   Search: {
     screen: CategoryNavigation,
     navigationOptions: {
-      tabBarLabel: 'Search',
+      tabBarLabel: 'BROWSE',
       tabBarIcon: ({focused}) => (
-        <Ionicons
-          name='ios-search'
-          size={30}
-          color={focused ? '#000' : '#D62246'} />
+        <SimpleLineIcons
+          name='magnifier'
+          size={23}
+          color={focused ? '#1CFEBA' : '#9d8df1'} />
       )
     }
   },
   'NewProduct': {
     screen: NewProductNavigation,
     navigationOptions: {
-      tabBarLabel: 'Add',
+      tabBarLabel: 'ADD',
       tabBarIcon: ({focused}) => (
-        <Ionicons
-          name='ios-camera'
-          size={30}
-          color={focused ? '#000' : '#D62246'} />
+        <SimpleLineIcons
+          name='camera'
+          size={23}
+          color={focused ? '#1CFEBA' : '#9d8df1'} />
       )
     }
   },
   Notifications: {
     screen: Notifications,
     navigationOptions: {
-      tabBarLabel: 'Notifications',
+      tabBarLabel: 'NOTIFICATIONS',
       tabBarIcon: ({focused}) => (
-        <Ionicons
-          name='ios-notifications'
-          size={30}
-          color={focused ? '#000' : '#D62246'} />
+        <SimpleLineIcons
+          name='bell'
+          size={23}
+          color={focused ? '#1CFEBA' : '#9d8df1'} />
       )
     }
   },
@@ -62,18 +62,25 @@ const AppNavigation = TabNavigator({
     screen: Profile,
     navigationOptions: {
       // Update to show username
-      tabBarLabel: 'Profile',
+      tabBarLabel: 'PROFILE',
       tabBarIcon: ({focused}) => (
-        <Ionicons
-          name='ios-contact'
-          size={30}
-          color={focused ? '#000' : '#D62246'} />
+        <SimpleLineIcons
+          name='user'
+          size={23}
+          color={focused ? '#1CFEBA' : '#9d8df1'} />
       )
     }
   }
 }, {
   tabBarOptions: {
-    activeTintColor: '#000'
+    activeTintColor: '#1CFEBA',
+    style: {
+      backgroundColor: '#1E201C',
+    },
+    labelStyle: {
+      fontSize: 9,
+      fontWeight: '600'
+    }
   }
 });
 

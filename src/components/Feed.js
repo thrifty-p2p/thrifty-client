@@ -13,7 +13,10 @@ class Feed extends React.Component {
   }
 
   renderProducts() {
-    return this.props.products.map(product => {
+    const sortProductsByDate = this.props.products.sort((a,b) => {
+      return new Date(b.date_created) - new Date(a.date_created);
+    });
+    return sortProductsByDate.map(product => {
       if(product.is_available) {
         return <ProductDetail key={product.id} product={product} navigation={this.props.navigation}/>;
       }
@@ -31,7 +34,7 @@ class Feed extends React.Component {
     return (
       <View style={styles.container}>
         <Header isBackProp={false}/>
-        <ScrollView style={{marginBottom: 60}}>
+        <ScrollView style={{marginBottom: 56}}>
           {this.renderProducts()}
         </ScrollView>
       </View>

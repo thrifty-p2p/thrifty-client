@@ -42,7 +42,7 @@ class SingleProduct extends Component {
     return (
       <View style={container}>
         <Header isBackProp={true} navigation={this.props.navigation}/>
-        <ScrollView style={{marginBottom: 60}}>
+        <ScrollView style={{marginBottom: 56}}>
 
           {this.renderProductById()}
 

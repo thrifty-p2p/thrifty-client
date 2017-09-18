@@ -1,20 +1,55 @@
 import React, {Component} from 'react';
-import {ScrollView, View, Image, Text, StyleSheet, Platform, Picker} from 'react-native';
+import {ScrollView, View, Image, Text, StyleSheet, Platform, AsyncStorage} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {Picker} from 'native-base';
 
 import {Header, Button, InputField, CardSection} from './common';
-import {s3ImageUpload, updateNewProductForm} from '../actions/product.actions';
+import {s3ImageUpload, updateNewProductForm, createNewProduct} from '../actions/product.actions';
+
+const Item = Picker.Item;
 
 class NewProductFrom extends Component {
-  onSubmitNewProduct() {
-    const image = this.props.navigation.state.params.selected[0];
-    this.props.s3ImageUpload(image);
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: '',
+      UID: null
+    }
+  }
+
+  async onSubmitNewProduct() {
+    const imageObject = this.props.navigation.state.params.selected[0];
+
+    this.props.s3ImageUpload(imageObject);
+
+    await AsyncStorage.getItem('userID')
+      .then(UID => {
+        this.setState({UID})
+      })
+      .catch(error => error);
+
+    const product = {
+      title: this.props.title,
+      price: parseInt(this.props.price, 10),
+      description: this.props.description,
+      color: this.props.color,
+      category_names: [this.state.category],
+      image_url: `https://thrifty-p2p.s3.amazonaws.com/${imageObject.filename}`,
+      seller_id: this.state.UID
+      // this.state.UID
+      // Seller ID hard coded until I can get AWS to work with Bearer Auth
+    }
+
+    await this.props.createNewProduct(product);
+
+    this.setState({category: ''})
+
   }
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <Header isBackProp={true} navigation={this.props.navigation}/>
         <Image source={{uri: this.props.navigation.state.params.selected[0].uri}} style={styles.productImage}/>
         <CardSection>
@@ -39,8 +74,6 @@ class NewProductFrom extends Component {
           <InputField
             label="DESCRIPTION"
             placeholder="Description"
-            multiline
-            numberOfLines={3}
             onChangeText={value => this.props.updateNewProductForm({property: 'description', value})}
             value={this.props.description}
           />
@@ -55,60 +88,60 @@ class NewProductFrom extends Component {
           />
         </CardSection>
 
-        <CardSection style={{flexDirection: 'column'}}>
-          <Text style={styles.pickerLabelStyle}>CATEGORY</Text>
+        <CardSection>
           <Picker
-            selectedValue={this.props.category}
-            onValueChange={value => this.props.updateNewProductForm({property: 'category', value})}>
-            <Picker.Item label='Men' value='Accessories (Men)'/>
-            <Picker.Item label='Women' value='Accessories (Women)'/>
-            <Picker.Item label='Books' value='Books'/>
-            <Picker.Item label='Computers' value='Computers'/>
-            <Picker.Item label='Mobile Electronics' value='Mobile Electronics'/>
-            <Picker.Item label='CDs/DVDs' value='CDs/DVDs'/>
-            <Picker.Item label='Music Instruments' value='Music Instruments'/>
-            <Picker.Item label='Clothes' value='Clothes'/>
-            <Picker.Item label='Tickets' value='Tickets'/>
-            <Picker.Item label='Video Games' value='Video Games'/>
+            placeholder="Select Category"
+            iosHeader="Select One"
+            mode="dropdown"
+            selectedValue={this.state.category}
+            onValueChange={value => this.setState({category: value})}>
+            <Item label='Men' value='Accessories (Men)'/>
+            <Item label='Women' value='Accessories (Women)'/>
+            <Item label='Books' value='Books'/>
+            <Item label='Computers' value='Computers'/>
+            <Item label='Mobile Electronics' value='Mobile Electronics'/>
+            <Item label='CDs/DVDs' value='CDs/DVDs'/>
+            <Item label='Music Instruments' value='Music Instruments'/>
+            <Item label='Clothes' value='Clothes'/>
+            <Item label='Tickets' value='Tickets'/>
+            <Item label='Video Games' value='Video Games'/>
           </Picker>
         </CardSection>
 
-        <Button onPress={this.onSubmitNewProduct.bind(this)} color="#D62246">
-          CREATE PRODUCT
-          {console.log(this.props.newProduct)}
-        </Button>
-      </ScrollView>
+        <CardSection>
+          <Button onPress={this.onSubmitNewProduct.bind(this)} color="#1CFEBA">
+            CREATE PRODUCT
+          </Button>
+        </CardSection>
+
+      </View>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({s3ImageUpload, updateNewProductForm}, dispatch);
+  return bindActionCreators({
+    s3ImageUpload,
+    updateNewProductForm,
+    createNewProduct}, dispatch);
 }
 
 const mapStateToProps = (state) => {
-  const {title, price, description, color, category} = state.newProduct;
-  return {title, price, description, color, category};
+  const {title, price, description, color} = state.newProduct;
+  return {title, price, description, color};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewProductFrom);
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === 'ios' ? 20 : 0
+    flex: 1,
+    marginTop: Platform.OS === 'ios' ? 20 : 0,
+    justifyContent: 'space-between'
   },
   productImage: {
     height: 300,
     flex: 1,
     width: null
-  },
-  pickerLabelStyle: {
-    fontSize: 14,
-    paddingLeft: 20
   }
 });
-
-const categories = [
-  {label:'Men', value:'Accessories (Men)'},
-  {label:'Women', value:'Accessories (Women)'}
-]

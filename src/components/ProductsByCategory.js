@@ -14,9 +14,17 @@ class ProductsByCategory extends Component {
 
   renderByCategory() {
     if (this.props.isReceived) {
-      return this.props.productsByCategory.products.map(product => {
+      const sortProductsByDate = this.props.productsByCategory.products.sort((a,b) => {
+        return new Date(b.date_created) - new Date(a.date_created);
+      });
+      return sortProductsByDate.map(product => {
         if(product.is_available) {
-          return <ProductsByCategoryDetail key={product.id} product={product} navigation={this.props.navigation}/>;
+          return (
+            <ProductsByCategoryDetail
+              key={product.id}
+              product={product}
+              navigation={this.props.navigation}/>
+          );
         }
       });
     };
@@ -33,7 +41,7 @@ class ProductsByCategory extends Component {
     return (
       <View style={styles.container}>
         <Header isBackProp={true} navigation={this.props.navigation}/>
-        <ScrollView style={{marginBottom: 60}}>
+        <ScrollView style={{marginBottom: 56}}>
           {this.renderByCategory()}
         </ScrollView>
       </View>
