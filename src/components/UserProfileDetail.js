@@ -23,7 +23,7 @@ const UserProfileDetail = (props) => {
           </Text>
         </CardSection>
         <CardSection>
-          <Button onPress={() => props.navigation.navigate('Checkout')} color="#1cfeba">
+          <Button onPress={() => props.navigation.navigate('Cart', {product: props.product})} color="#1cfeba">
             BUY
           </Button>
         </CardSection>

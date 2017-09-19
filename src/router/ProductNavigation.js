@@ -6,6 +6,7 @@ import Categories from '../components/Categories';
 import ProductsByCategory from '../components/ProductsByCategory';
 import SingleProduct from '../components/SingleProduct';
 import Checkout from '../components/Checkout';
+import CartPage from '../components/CartPage';
 import UserProfile from '../components/UserProfile';
 
 const ProductNavigation = StackNavigator({
@@ -27,6 +28,13 @@ const ProductNavigation = StackNavigator({
     screen: SingleProduct,
     navigationOptions: {
       title: 'Product',
+      header: null
+    }
+  },
+  Cart: {
+    screen: CartPage,
+    navigationOptions: {
+      title: 'Cart Page',
       header: null
     }
   },

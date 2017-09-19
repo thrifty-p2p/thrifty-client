@@ -26,7 +26,7 @@ const {price} = props.product;
             </Button>
           </View>
           <View style={{flex:1}}>
-            <Button onPress={() => props.navigation.navigate('Checkout')} color="#1cfeba">
+            <Button onPress={() => props.navigation.navigate('Cart', {product: props.product})} color="#1cfeba">
               BUY
             </Button>
           </View>

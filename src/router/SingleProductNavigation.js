@@ -3,6 +3,7 @@ import {StackNavigator} from 'react-navigation'
 
 import SingleProduct from '../components/SingleProduct';
 import Checkout from '../components/Checkout';
+import CartPage from '../components/CartPage';
 import UserProfile from '../components/UserProfile';
 
 const SingleProductNavigation = StackNavigator({
@@ -17,6 +18,13 @@ const SingleProductNavigation = StackNavigator({
     screen: Checkout,
     navigationOptions: {
       title: 'Product',
+      header: null
+    }
+  },
+  Cart: {
+    screen: CartPage,
+    navigationOptions: {
+      title: 'Cart Page',
       header: null
     }
   },
