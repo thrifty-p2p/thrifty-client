@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Platform} from 'react-native';
+import {View, Text, StyleSheet, Image, Platform} from 'react-native';
 import stripe from 'tipsi-stripe';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -36,10 +36,13 @@ class Checkout extends Component {
   }
 
   renderOrderDetails() {
+    console.log(this.props);
     if (this.props.isOrderSuccessful) {
       return (
         <View style={styles.body}>
-          <Text>Thank you for your order!</Text>
+          <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo.png'}} style={styles.image} />
+          <Text style={styles.order}>ORDER ID: {this.props.transactionID}</Text>
+          <Text style={styles.order}>{'Thank you for your order!'.toUpperCase()}</Text>
         </View>
       );
     };
@@ -55,7 +58,7 @@ class Checkout extends Component {
     }
     return (
       <View style={styles.container}>
-        <Header isBackProp={true} navigation={this.props.navigation}/>
+        <Header navigation={this.props.navigation}/>
         {this.renderOrderDetails()}
       </View>
     )
@@ -64,10 +67,11 @@ class Checkout extends Component {
 
 const mapStateToProps = (state) => {
   console.log(state.checkout);
-  return {isLoading, isOrderSuccessful} = state.checkout;
+  return {isLoading, isOrderSuccessful, transactionID} = state.checkout;
   return {
     isLoading,
-    isOrderSuccessful
+    isOrderSuccessful,
+    transactionID
   };
 };
 
@@ -83,7 +87,20 @@ const styles = StyleSheet.create({
   },
   body: {
     alignSelf: 'center',
+    alignItems: 'center',
     justifyContent: 'center'
+  },
+  order: {
+    fontSize: 16,
+    fontWeight: '600',
+    alignSelf: 'center'
+  },
+  image: {
+    height: 100,
+    width: 250,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginBottom: 20
   }
 });
 

@@ -9,29 +9,37 @@ export const paymentRequest = (orderDetails, product) => {
     dispatch({type: checkout.CREATE_PAYMENT_REQUEST});
     Axios.post(`${API_URL}/payment`, orderDetails, {headers: {"Content-Type": "application/json"}})
     .then(response => {
-      dispatch({type: checkout.CREATE_PAYMENT_SUCCESS, payload: response});
-        updateProductStatus(product.id);
+      const transaction_id = `THRIFTY${Date.now()}`;
+      dispatch({type: checkout.CREATE_PAYMENT_SUCCESS, payload: response, transactionID: transaction_id});
+        updateProductStatus(product, transaction_id);
     }).catch(error => {
       dispatch({type: checkout.CREATE_PAYMENT_FAILURE, payload: error});
     });
   };
 };
 
-
-
-
-async function updateProductStatus (productId) {
-  const UID = await AsyncStorage.getItem('userID').then(UID => UID).catch(error => console.log(error));
-  Axios.patch(`${API_URL}/product/${productId}`)
+async function updateProductStatus (product, transaction_id) {
+  const buyer_id = await AsyncStorage.getItem('userID').then(buyer_id => buyer_id).catch(error => console.log(error));
+  Axios.patch(`${API_URL}/product/${product.id}`)
   .then(response => {
-    const productId = response.data[0].id
-    createOrder(parseInt(UID, 10), productId);
+    const seller_id = product.seller_id;
+    createOrder(buyer_id, product.id, transaction_id, seller_id);
   }).catch(error => {
     console.log(error);
   });
 };
 
-const createOrder = (UID, productId) => {
-  console.log('User: ', UID);
-  console.log('Product ID: ', productId);
+const createOrder = (buyer_id, product_id, transaction_id, seller_id) => {
+  const order = {
+    product_id,
+    buyer_id,
+    transaction_id,
+    seller_id
+  }
+  Axios.post(`${API_URL}/order`, order)
+    .then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error);
+    });
 };

@@ -10,7 +10,6 @@ import ProductDetail from './ProductDetail';
 class Feed extends React.Component {
   componentDidMount(){
     this.props.fetchAllProducts();
-    console.log(this.props);
   }
 
   renderProducts() {

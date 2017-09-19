@@ -1,21 +1,28 @@
-import * as product from '../actions/action.types';
+import * as checkout from '../actions/action.types';
 
 const INITIAL_STATE = {
   isLoading: false,
   isOrderSuccessful: false,
   error: '',
-  orderStatusCode: 0
+  orderStatusCode: 0,
+  transactionID: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case product.CREATE_PAYMENT_REQUEST:
+    case checkout.CREATE_PAYMENT_REQUEST:
       return {...state, isLoading: true, isOrderSuccessful: false};
 
-    case product.CREATE_PAYMENT_SUCCESS:
-      return {...state, isLoading: false, isOrderSuccessful: true, orderStatusCode: action.payload.status};
+    case checkout.CREATE_PAYMENT_SUCCESS:
+      return {
+        ...state,
+          isLoading: false,
+          isOrderSuccessful: true,
+          orderStatusCode: action.payload.status,
+          transactionID: action.transactionID
+        };
 
-    case product.CREATE_PAYMENT_FAILURE:
+    case checkout.CREATE_PAYMENT_FAILURE:
       return {...state, isLoading: false, isOrderSuccessful: false, error: action.payload};
 
     default:
