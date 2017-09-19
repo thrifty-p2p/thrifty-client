@@ -7,6 +7,7 @@ import ProductsByCategoryReducer from './productsByCategory.reducer';
 import ProductsByAccountReducer from './productsByAccount.reducer';
 import NewProductReducer from './productNew.reducer';
 import ProfileReducer from './profile.reducer';
+import CheckoutReducer from './checkout.reducer';
 
 export default combineReducers({
   auth: AuthReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   productsByCategory: ProductsByCategoryReducer,
   productsByAccount: ProductsByAccountReducer,
   newProduct: NewProductReducer,
-  profile: ProfileReducer
+  profile: ProfileReducer,
+  checkout: CheckoutReducer
 });
