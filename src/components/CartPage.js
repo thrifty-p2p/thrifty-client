@@ -28,7 +28,7 @@ const CartPage = props => {
         </View>
         <View>
           <CardSection>
-            <Button onPress={() => props.navigation.navigate('Checkout', {product: props.product})} color="#1CFEBA">
+            <Button onPress={() => props.navigation.navigate('Checkout', {product: product})} color="#1CFEBA">
               BUY NOW
             </Button>
           </CardSection>
