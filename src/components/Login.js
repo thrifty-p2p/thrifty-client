@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -20,7 +20,12 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, justifyContent: 'center'}}>
+
+        <View>
+          <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo.png'}} style={styles.image} />
+        </View>
+
         <CardSection>
 
           <InputField
@@ -65,3 +70,13 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+const styles = StyleSheet.create({
+  image: {
+    height: 100,
+    width: 250,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginBottom: 20
+  }
+})

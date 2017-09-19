@@ -8,7 +8,6 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case product.CREATE_PAYMENT_REQUEST:
       return {...state, isLoading: true, isOrderSuccessful: false};

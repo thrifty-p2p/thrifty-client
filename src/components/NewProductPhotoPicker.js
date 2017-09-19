@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View, Platform} from 'react-native';
+import {StyleSheet, Text, View, Platform, ImagePickerIOS} from 'react-native';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 
 import {addNewProductImages} from '../actions/product.actions';
@@ -21,6 +21,14 @@ class NewProduct extends Component {
     });
   }
 
+  // pickImage() {
+  //  // openSelectDialog(config, successCallback, errorCallback);
+  //  ImagePickerIOS.openSelectDialog({}, imageUri => {
+  //    console.log(this.props.eventUpdate);
+  //    this.props.eventUpdate({prop: 'picture', value: imageUri})
+  //  }, error => console.error(error));
+  // }
+
   render() {
     return (
       <View style={styles.container}>
@@ -40,6 +48,14 @@ class NewProduct extends Component {
           imagesPerRow={3}
           imageMargin={5}
           callback={this.getSelectedImages} />
+
+        {/* <CardSection>
+          <Button
+            onPress={this.pickImage}
+            color="#1cfeba">
+            Select Photo
+          </Button>
+        </CardSection> */}
 
         <CardSection>
           <Button

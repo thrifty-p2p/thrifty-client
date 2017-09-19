@@ -28,15 +28,17 @@ class Checkout extends Component {
           amount: product.price,
           description: product.description
         };
-        this.props.paymentRequest(orderDetails);
+        this.props.paymentRequest(orderDetails, product);
       }
-    )
+    ).catch(error => {
+      alert(error);
+    });
   }
 
   renderOrderDetails() {
     if (this.props.isOrderSuccessful) {
       return (
-        <View>
+        <View style={styles.body}>
           <Text>Thank you for your order!</Text>
         </View>
       );
@@ -78,6 +80,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
 const styles = StyleSheet.create({
   container: {
     marginTop: Platform.OS === 'ios' ? 20 : 0
+  },
+  body: {
+    alignSelf: 'center',
+    justifyContent: 'center'
   }
 });
 
