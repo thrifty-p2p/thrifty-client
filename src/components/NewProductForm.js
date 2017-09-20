@@ -6,14 +6,14 @@ import {Picker} from 'native-base';
 import { NavigationActions } from 'react-navigation'
 
 import {Header, Button, InputField, CardSection} from './common';
-import {s3ImageUpload, updateNewProductForm, createNewProduct} from '../actions/product.actions';
+import {fetchAllProducts, uploadFile, updateNewProductForm, createNewProduct} from '../actions/product.actions';
 
 const Item = Picker.Item;
 
 const resetFeed = NavigationActions.reset({
   index: 0,
   actions: [
-    NavigationActions.navigate({ routeName: 'ProductNavigation'})
+    NavigationActions.navigate({ routeName: 'Feed'})
   ]
 });
 
@@ -26,8 +26,8 @@ class NewProductFrom extends Component {
   }
 
   async onSubmitNewProduct() {
-    const imageObject = this.props.navigation.state.params.selected[0];
-    this.props.s3ImageUpload(imageObject);
+    const image = this.props.navigation.state.params.selected[0];
+    this.props.uploadFile(image);
     const UID = await AsyncStorage.getItem('userID').then(UID => UID).catch(error => error);
     const product = {
       title: this.props.title,
@@ -35,16 +35,15 @@ class NewProductFrom extends Component {
       description: this.props.description,
       color: this.props.color,
       category_names: [this.state.category],
-      image_url: `https://thrifty-p2p.s3.amazonaws.com/${imageObject.filename}`,
+      // IMG_0001.JPG
+      image_url: `https://thrifty-p2p.s3.amazonaws.com/%2F${image.filename}`,
       seller_id: 1
       // this.state.UID
       // Seller ID hard coded until I can get AWS to work with Bearer Auth
     }
-
     await this.props.createNewProduct(product);
-
-    this.setState({category: ''})
-
+    await this.setState({category: ''});
+    await this.props.fetchAllProducts();
     await this.props.navigation.navigate(resetFeed)
   }
 
@@ -124,9 +123,11 @@ class NewProductFrom extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    s3ImageUpload,
     updateNewProductForm,
-    createNewProduct}, dispatch);
+    uploadFile,
+    fetchAllProducts,
+    createNewProduct
+  }, dispatch);
 }
 
 const mapStateToProps = (state) => {

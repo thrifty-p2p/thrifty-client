@@ -110,3 +110,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# hide AWS config 
+/src/AWS_config.js

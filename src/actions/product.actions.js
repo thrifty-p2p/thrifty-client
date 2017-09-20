@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import * as product from './action.types';
-import {ImageStore} from 'react-native';
+import { RNS3 } from 'react-native-aws3';
+import {options} from '../AWS_config';
 
 // const API_URL = 'https://thrifty-p2p.herokuapp.com/api';
 const API_URL = (__DEV__) ? 'http://localhost:5000/api' : 'https://thrifty-p2p.herokuapp.com/api';
@@ -53,45 +54,37 @@ export const fetchProductsByAccount = (profileID) => {
   };
 };
 
+// export const s3ImageUpload = (file) => {
+//   return dispatch => {
+//     dispatch({type: product.FETCH_S3_SIGNED_REQUEST})
+//     Axios.get(`${API_URL}/sign-s3?file-name=${file.filename}`)
+//     .then(response => {
+//       dispatch({type: product.FETCH_S3_SIGNED_SUCCESS, payload: response.data.url});
+//       uploadFile(file, response.data.signedRequest);
+//     }).catch(error => {
+//       dispatch({type: product.FETCH_S3_SIGNED_FAILURE, payload: error.response});
+//     });
+//   };
+// };
 
-export const s3ImageUpload = (file) => {
-  return dispatch => {
-    dispatch({type: product.FETCH_S3_SIGNED_REQUEST})
-    Axios.get(`${API_URL}/sign-s3?file-name=${file.filename}`)
-    .then(response => {
-      dispatch({type: product.FETCH_S3_SIGNED_SUCCESS, payload: response.data.url});
-      uploadFile(file, response.data.signedRequest);
-    }).catch(error => {
-      dispatch({type: product.FETCH_S3_SIGNED_FAILURE, payload: error.response});
-    });
-  };
-};
-
-const uploadFile = (file, signedRequestURL) => {
-
-  console.log(file);
-
+export const uploadFile = (file, signedRequestURL) => {
   const image = {
     uri: file.uri,
-    type: 'image/jpeg',
-    name: file.filename
+    name: file.filename,
+    type: "image/jpeg"
   };
-
-  let data = new FormData();
-  data.append('file', image);
-
-  const options = {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  };
-
-  Axios.put(signedRequestURL, data, options)
-  .then(response => {
-    console.log(response);
-  }).catch(error => {
-    console.log(error);
-  });
+  return dispatch => {
+    dispatch({type: product.CREATE_S3_PRODUCT_IMAGE_REQUEST})
+    RNS3.put(image, options).then(response => {
+      if (response.status !== 201) {
+        dispatch({type: product.CREATE_S3_PRODUCT_IMAGE_FAILURE})
+        throw new Error("Failed to upload image to S3");
+      } else {
+        console.log(response.body);
+        dispatch({type: product.CREATE_S3_PRODUCT_IMAGE_SUCCESS, payload: response.body})
+      }
+    });
+  }
 
 }
 
