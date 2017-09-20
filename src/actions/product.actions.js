@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import * as product from './action.types';
+import {ImageStore} from 'react-native';
 
 const API_URL = (__DEV__)
   ? 'http://localhost:5000/api'
@@ -53,13 +54,14 @@ export const fetchProductsByAccount = (profileID) => {
   };
 };
 
-export const s3ImageUpload = (image) => {
+
+export const s3ImageUpload = (file) => {
   return dispatch => {
     dispatch({type: product.FETCH_S3_SIGNED_REQUEST})
-    Axios.get(`${API_URL}/sign-s3?file-name=${image.filename}`)
+    Axios.get(`${API_URL}/sign-s3?file-name=${file.filename}`)
     .then(response => {
       dispatch({type: product.FETCH_S3_SIGNED_SUCCESS, payload: response.data.url});
-      uploadFile(image, response.data.signedRequest);
+      uploadFile(file, response.data.signedRequest);
     }).catch(error => {
       dispatch({type: product.FETCH_S3_SIGNED_FAILURE, payload: error.response});
     });
@@ -67,6 +69,8 @@ export const s3ImageUpload = (image) => {
 };
 
 const uploadFile = (file, signedRequestURL) => {
+
+  console.log(file);
 
   const image = {
     uri: file.uri,

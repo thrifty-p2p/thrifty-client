@@ -21,13 +21,13 @@ class NewProduct extends Component {
     });
   }
 
-  // pickImage() {
-  //  // openSelectDialog(config, successCallback, errorCallback);
-  //  ImagePickerIOS.openSelectDialog({}, imageUri => {
-  //    console.log(this.props.eventUpdate);
-  //    this.props.eventUpdate({prop: 'picture', value: imageUri})
-  //  }, error => console.error(error));
-  // }
+  pickImage() {
+  //  openSelectDialog(config, successCallback, errorCallback);
+   ImagePickerIOS.openSelectDialog({}, imageUri => {
+     console.log(this.props.eventUpdate);
+     this.props.eventUpdate({prop: 'picture', value: imageUri})
+   }, error => console.error(error));
+  }
 
   render() {
     return (
@@ -35,7 +35,7 @@ class NewProduct extends Component {
 
         <Header isBackProp={false}/>
 
-        <CameraRollPicker
+        {/* <CameraRollPicker
           scrollRenderAheadDistance={500}
           initialListSize={1}
           pageSize={3}
@@ -47,15 +47,15 @@ class NewProduct extends Component {
           assetType='Photos'
           imagesPerRow={3}
           imageMargin={5}
-          callback={this.getSelectedImages} />
+          callback={this.getSelectedImages} /> */}
 
-        {/* <CardSection>
+        <CardSection>
           <Button
             onPress={this.pickImage}
             color="#1cfeba">
             Select Photo
           </Button>
-        </CardSection> */}
+        </CardSection>
 
         <CardSection>
           <Button
