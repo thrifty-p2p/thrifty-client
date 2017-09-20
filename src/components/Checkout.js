@@ -7,15 +7,6 @@ import {paymentRequest} from '../actions/checkout.actions';
 import {Header, LoadingIcon, CardSection, Button} from './common';
 import { NavigationActions } from 'react-navigation'
 
-
-const resetFeed = NavigationActions.reset({
-  index: 0,
-  key: null,
-  actions: [
-    NavigationActions.navigate({ routeName: 'Feed'})
-  ]
-});
-
 stripe.init({
   publishableKey: 'pk_test_xGwHSSWGMyxF78h4Vjz7mqtA',
 });
@@ -70,7 +61,7 @@ class Checkout extends Component {
       <View style={styles.container}>
         <Header navigation={this.props.navigation}/>
         {this.renderOrderDetails()}
-        <View style={{flex:1}}>
+        <View>
           <CardSection>
             <Button onPress={() => this.props.navigation.dispatch(resetFeed)}>
               HOME
@@ -104,7 +95,6 @@ const styles = StyleSheet.create({
   },
   body: {
     alignSelf: 'center',
-    alignItems: 'center',
     justifyContent: 'center'
   },
   order: {
@@ -129,3 +119,9 @@ const theme = {
   accentColor: '#1CFEBA',
   errorColor: '#A20021'
 };
+
+const resetFeed = NavigationActions.reset({
+  index: 0,
+  key: null,
+  actions: [NavigationActions.navigate({ routeName: 'Feed'})]
+});

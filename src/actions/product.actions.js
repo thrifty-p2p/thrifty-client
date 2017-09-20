@@ -81,7 +81,7 @@ export const uploadFile = (file, signedRequestURL) => {
         throw new Error("Failed to upload image to S3");
       } else {
         console.log(response.body);
-        dispatch({type: product.CREATE_S3_PRODUCT_IMAGE_SUCCESS, payload: response.body})
+        dispatch({type: product.CREATE_S3_PRODUCT_IMAGE_SUCCESS, payload: response.body.postResponse.location})
       }
     });
   }

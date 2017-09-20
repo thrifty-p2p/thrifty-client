@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {Picker} from 'native-base';
 import { NavigationActions } from 'react-navigation'
 
-import {Header, Button, InputField, CardSection} from './common';
+import {Header, Button, InputField, Card, CardSection} from './common';
 import {fetchAllProducts, uploadFile, updateNewProductForm, createNewProduct} from '../actions/product.actions';
 
 const Item = Picker.Item;
@@ -35,11 +35,8 @@ class NewProductFrom extends Component {
       description: this.props.description,
       color: this.props.color,
       category_names: [this.state.category],
-      // IMG_0001.JPG
       image_url: `https://thrifty-p2p.s3.amazonaws.com/%2F${image.filename}`,
-      seller_id: 1
-      // this.state.UID
-      // Seller ID hard coded until I can get AWS to work with Bearer Auth
+      seller_id: (this.state.UID) ? this.state.UID : 1
     }
     await this.props.createNewProduct(product);
     await this.setState({category: ''});
@@ -52,6 +49,7 @@ class NewProductFrom extends Component {
       <View style={styles.container}>
         <Header isBackProp={true} navigation={this.props.navigation}/>
         <ScrollView>
+          <Card>
           <Image source={{uri: this.props.navigation.state.params.selected[0].uri}} style={styles.productImage}/>
           <CardSection>
             <InputField
@@ -114,6 +112,7 @@ class NewProductFrom extends Component {
               CREATE PRODUCT
             </Button>
           </CardSection>
+        </Card>
         </ScrollView>
 
       </View>
