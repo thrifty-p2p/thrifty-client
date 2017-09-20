@@ -10,6 +10,7 @@ import { NavigationActions } from 'react-navigation'
 
 const resetFeed = NavigationActions.reset({
   index: 0,
+  key: null,
   actions: [
     NavigationActions.navigate({ routeName: 'Feed'})
   ]
