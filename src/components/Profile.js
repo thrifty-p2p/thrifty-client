@@ -14,10 +14,8 @@ class Profile extends Component {
   }
 
   async componentDidMount() {
-    let UID = ''
-    await AsyncStorage.getItem('userID')
-      .then( userID => UID = userID)
-      .catch(error => console.error(error));
+    const UID = await AsyncStorage.getItem('userID')
+      .then(UID => UID).catch(error => console.error(error));
     // await this.props.fetchAccountByID(1);
   }
 

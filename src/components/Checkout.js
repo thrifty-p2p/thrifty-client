@@ -5,6 +5,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {paymentRequest} from '../actions/checkout.actions';
 import {Header, LoadingIcon} from './common';
+import { NavigationActions } from 'react-navigation'
+
+
+const resetFeed = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Feed'})
+  ]
+});
 
 stripe.init({
   publishableKey: 'pk_test_xGwHSSWGMyxF78h4Vjz7mqtA',
@@ -31,7 +40,7 @@ class Checkout extends Component {
         this.props.paymentRequest(orderDetails, product);
       }
     ).catch(error => {
-      alert(error);
+      this.props.navigation.dispatch(resetFeed);
     });
   }
 

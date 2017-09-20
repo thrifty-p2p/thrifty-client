@@ -3,32 +3,32 @@ import {ScrollView, View, Image, Text, StyleSheet, Platform, AsyncStorage} from 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Picker} from 'native-base';
+import { NavigationActions } from 'react-navigation'
 
 import {Header, Button, InputField, CardSection} from './common';
 import {s3ImageUpload, updateNewProductForm, createNewProduct} from '../actions/product.actions';
 
 const Item = Picker.Item;
 
+const resetFeed = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'ProductNavigation'})
+  ]
+});
+
 class NewProductFrom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: '',
-      UID: null
+      category: ''
     }
   }
 
   async onSubmitNewProduct() {
     const imageObject = this.props.navigation.state.params.selected[0];
-
     this.props.s3ImageUpload(imageObject);
-
-    await AsyncStorage.getItem('userID')
-      .then(UID => {
-        this.setState({UID})
-      })
-      .catch(error => error);
-
+    const UID = await AsyncStorage.getItem('userID').then(UID => UID).catch(error => error);
     const product = {
       title: this.props.title,
       price: parseInt(this.props.price, 10),
@@ -45,7 +45,7 @@ class NewProductFrom extends Component {
 
     this.setState({category: ''})
 
-    // await this.props.navigation.navigate('ProductNavigation')
+    await this.props.navigation.navigate(resetFeed)
   }
 
   render() {
