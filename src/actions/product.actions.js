@@ -59,27 +59,35 @@ export const s3ImageUpload = (image) => {
     Axios.get(`${API_URL}/sign-s3?file-name=${image.filename}`)
     .then(response => {
       dispatch({type: product.FETCH_S3_SIGNED_SUCCESS, payload: response.data.url});
-      uploadFile(image, response.data.signedRequest, response.data.url);
+      uploadFile(image, response.data.signedRequest);
     }).catch(error => {
       dispatch({type: product.FETCH_S3_SIGNED_FAILURE, payload: error.response});
     });
   };
 };
 
-const uploadFile = (file, signedRequestURL, url) => {
+const uploadFile = (file, signedRequestURL) => {
+
   const image = {
     uri: file.uri,
     type: 'image/jpeg',
     name: file.filename
-  }
+  };
+
   let data = new FormData();
   data.append('file', image);
-  console.log(data);
-  Axios.put(signedRequestURL, data)
+
+  const options = {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  };
+
+  Axios.put(signedRequestURL, data, options)
   .then(response => {
     console.log(response);
   }).catch(error => {
-    console.log(error.response);
+    console.log(error);
   });
 
 }

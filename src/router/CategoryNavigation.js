@@ -1,6 +1,7 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation'
 
+import Feed from '../components/Feed';
 import Categories from '../components/Categories';
 import ProductsByCategory from '../components/ProductsByCategory';
 import SingleProduct from '../components/SingleProduct';
@@ -50,7 +51,7 @@ const CategoryNavigation = StackNavigator({
       title: 'Profile',
       header: null
     }
-  },
+  }
 });
 
 export default CategoryNavigation;
