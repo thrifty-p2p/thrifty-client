@@ -4,7 +4,7 @@ import stripe from 'tipsi-stripe';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {paymentRequest} from '../actions/checkout.actions';
-import {Header, LoadingIcon} from './common';
+import {Header, LoadingIcon, CardSection, Button} from './common';
 import { NavigationActions } from 'react-navigation'
 
 
@@ -41,7 +41,7 @@ class Checkout extends Component {
         this.props.paymentRequest(orderDetails, product);
       }
     ).catch(error => {
-      this.props.navigation.dispatch(resetFeed);
+      console.log(error);
     });
   }
 
@@ -70,6 +70,13 @@ class Checkout extends Component {
       <View style={styles.container}>
         <Header navigation={this.props.navigation}/>
         {this.renderOrderDetails()}
+        <View style={{flex:1}}>
+          <CardSection>
+            <Button onPress={() => this.props.navigation.dispatch(resetFeed)}>
+              HOME
+            </Button>
+          </CardSection>
+        </View>
       </View>
     )
   }

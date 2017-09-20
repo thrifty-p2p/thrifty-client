@@ -2,8 +2,8 @@ import Axios from 'axios';
 import * as product from './action.types';
 import {ImageStore} from 'react-native';
 
-const API_URL = 'https://thrifty-p2p.herokuapp.com/api';
-// const API_URL = (__DEV__) ? 'http://localhost:5000/api' : 'https://thrifty-p2p.herokuapp.com/api';
+// const API_URL = 'https://thrifty-p2p.herokuapp.com/api';
+const API_URL = (__DEV__) ? 'http://localhost:5000/api' : 'https://thrifty-p2p.herokuapp.com/api';
 
 export const fetchAllProducts = () => {
   return dispatch => {
