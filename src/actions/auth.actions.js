@@ -24,7 +24,7 @@ export const createNewAccount = (user) => {
       setAsyncStorage(response);
     }).catch(error => {
       AlertIOS.alert(error.response.data.message);
-      dispatch({type: auth.ACCOUNT_SIGNUP_FAILUE, payload: error.response.data});
+      dispatch({type: auth.ACCOUNT_SIGNUP_FAILUE, payload: error.response});
     });
   };
 };
@@ -38,7 +38,7 @@ export const loginAccount = (credentials) => {
       setAsyncStorage(response);
     }).catch(error => {
       AlertIOS.alert(error.response.data.message);
-      dispatch({type: auth.ACCOUNT_LOGIN_FAILUE, payload: error.response.data});
+      dispatch({type: auth.ACCOUNT_LOGIN_FAILUE, payload: error.response});
     });
   };
 };
@@ -66,8 +66,9 @@ const accountLogout = async () => {
 
 const setAsyncStorage = response => {
   const {token, id} = response.data;
+  console.log(token, id);
   AsyncStorage.multiSet([
-    ['token', token],
+    ['token', token.toString()],
     ['userID', id.toString()]
   ]);
   setAuthorizationToken(token);
