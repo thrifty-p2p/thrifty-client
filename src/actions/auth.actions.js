@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { AsyncStorage, AlertIOS } from 'react-native';
 import * as auth from './action.types';
 
+// const AUTH_URL = 'https://thrifty-p2p.herokuapp.com/api/auth';
 const AUTH_URL = (__DEV__) ? 'http://localhost:5000/api/auth' : 'https://thrifty-p2p.herokuapp.com/api/auth';
 
 export const updateAccountForm = ({property, value}) => {

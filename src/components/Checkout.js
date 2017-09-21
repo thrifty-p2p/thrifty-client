@@ -1,12 +1,114 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Platform} from 'react-native';
+import {View, Text, StyleSheet, Image, Platform} from 'react-native';
 import stripe from 'tipsi-stripe';
-
-import {Header} from './common';
-
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {paymentRequest} from '../actions/checkout.actions';
+import {Header, LoadingIcon, CardSection, Button} from './common';
+import { NavigationActions } from 'react-navigation'
 
 stripe.init({
   publishableKey: 'pk_test_xGwHSSWGMyxF78h4Vjz7mqtA',
+});
+
+class Checkout extends Component {
+  componentDidMount() {
+    const options = {
+      smsAutofillDisabled: true,
+      requiredBillingAddressFields: 'full',
+      theme
+    };
+
+    stripe.paymentRequestWithCardForm(options)
+      .then(response => {
+        const {product} = this.props.navigation.state.params;
+
+        const orderDetails = {
+          email: 'djaudius@gmail.com',
+          tokenId: response.tokenId,
+          amount: product.price,
+          description: product.description
+        };
+        this.props.paymentRequest(orderDetails, product);
+      }
+    ).catch(error => {
+      console.log(error);
+    });
+  }
+
+  renderOrderDetails() {
+    console.log(this.props);
+    if (this.props.isOrderSuccessful) {
+      return (
+        <View style={styles.body}>
+          <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo.png'}} style={styles.image} />
+          <Text style={styles.order}>ORDER ID: {this.props.transactionID}</Text>
+          <Text style={styles.order}>{'Thank you for your order!'.toUpperCase()}</Text>
+        </View>
+      );
+    };
+  }
+
+  render() {
+    if (this.props.isLoading) {
+      return (
+        <View style={styles.body}>
+          <LoadingIcon />
+        </View>
+      );
+    }
+    return (
+      <View style={styles.container}>
+        <Header navigation={this.props.navigation}/>
+        {this.renderOrderDetails()}
+        <View>
+          <CardSection>
+            <Button onPress={() => this.props.navigation.dispatch(resetFeed)}>
+              HOME
+            </Button>
+          </CardSection>
+        </View>
+      </View>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  console.log(state.checkout);
+  return {isLoading, isOrderSuccessful, transactionID} = state.checkout;
+  return {
+    isLoading,
+    isOrderSuccessful,
+    transactionID
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({paymentRequest}, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: Platform.OS === 'ios' ? 20 : 0
+  },
+  body: {
+    alignSelf: 'center',
+    justifyContent: 'center'
+  },
+  order: {
+    fontSize: 16,
+    fontWeight: '600',
+    alignSelf: 'center'
+  },
+  image: {
+    height: 100,
+    width: 250,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginBottom: 20
+  }
 });
 
 const theme = {
@@ -18,36 +120,8 @@ const theme = {
   errorColor: '#A20021'
 };
 
-
-class Checkout extends Component {
-  componentDidMount() {
-
-    const options = {
-      smsAutofillDisabled: true,
-      requiredBillingAddressFields: 'full',
-      theme
-    };
-    stripe.paymentRequestWithCardForm(options)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Header isBackProp={true} navigation={this.props.navigation}/>
-      </View>
-    )
-  }
-}
-
-export default Checkout;
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: Platform.OS === 'ios' ? 20 : 0
-  }
+const resetFeed = NavigationActions.reset({
+  index: 0,
+  key: null,
+  actions: [NavigationActions.navigate({ routeName: 'Feed'})]
 });

@@ -15,31 +15,25 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case product.FETCH_S3_SIGNED_REQUEST:
+    case product.CREATE_S3_PRODUCT_IMAGE_REQUEST:
       return {
         ...state,
           isLoading: true,
-          isS3URLReceived: false,
-          s3url: '',
           error: ''
         };
 
-    case product.FETCH_S3_SIGNED_SUCCESS:
+    case product.CREATE_S3_PRODUCT_IMAGE_SUCCESS:
       return {
         ...state,
           isLoading: false,
-          isS3URLReceived: true,
-          s3url: action.payload,
           error: ''
         };
 
-    case product.FETCH_S3_SIGNED_FAILURE:
+    case product.CREATE_S3_PRODUCT_IMAGE_FAILURE:
       return {
         ...state,
           isLoading: false,
-          isS3URLReceived: false,
-          s3url: '',
-          error: action.payload
+          s3url: ''
         };
 
     case product.PRODUCT_FORM_UPDATE:
@@ -53,7 +47,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: true,
         isReceived: false,
-        error: ''};
+        error: ''
+      };
 
     case product.CREATE_NEW_PRODUCT_SUCCESS:
       return {

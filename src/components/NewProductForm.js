@@ -3,9 +3,10 @@ import {ScrollView, View, Image, Text, StyleSheet, Platform, AsyncStorage} from 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Picker} from 'native-base';
+import { NavigationActions } from 'react-navigation'
 
-import {Header, Button, InputField, CardSection} from './common';
-import {s3ImageUpload, updateNewProductForm, createNewProduct} from '../actions/product.actions';
+import {Header, Button, InputField, Card, CardSection} from './common';
+import {fetchAllProducts, uploadFile, updateNewProductForm} from '../actions/product.actions';
 
 const Item = Picker.Item;
 
@@ -13,107 +14,100 @@ class NewProductFrom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: '',
-      UID: null
+      category: ''
     }
   }
 
   async onSubmitNewProduct() {
-    const imageObject = this.props.navigation.state.params.selected[0];
-
-    this.props.s3ImageUpload(imageObject);
-
-    await AsyncStorage.getItem('userID')
-      .then(UID => {
-        this.setState({UID})
-      })
+    const image = this.props.navigation.state.params.selected[0];
+    const UID = await AsyncStorage.getItem('userID')
+      .then(UID => UID)
       .catch(error => error);
-
     const product = {
       title: this.props.title,
       price: parseInt(this.props.price, 10),
       description: this.props.description,
       color: this.props.color,
       category_names: [this.state.category],
-      image_url: `https://thrifty-p2p.s3.amazonaws.com/${imageObject.filename}`,
-      seller_id: 5
-      // this.state.UID
-      // Seller ID hard coded until I can get AWS to work with Bearer Auth
+      seller_id: UID ? UID : 1
+    };
+
+    this.props.uploadFile(image, product);
+    this.setState({category: ''});
+
     }
 
-    await this.props.createNewProduct(product);
-
-    this.setState({category: ''})
-
-    // await this.props.navigation.navigate('ProductNavigation')
-  }
 
   render() {
     return (
       <View style={styles.container}>
         <Header isBackProp={true} navigation={this.props.navigation}/>
-        <Image source={{uri: this.props.navigation.state.params.selected[0].uri}} style={styles.productImage}/>
-        <CardSection>
-          <InputField
-            label="TITLE"
-            placeholder="Title"
-            onChangeText={value => this.props.updateNewProductForm({property: 'title', value})}
-            value={this.props.title}
-          />
-        </CardSection>
+        <ScrollView>
+          <Card>
+          <Image source={{uri: this.props.navigation.state.params.selected[0].uri}} style={styles.productImage}/>
+          <CardSection>
+            <InputField
+              label="TITLE"
+              placeholder="Title"
+              onChangeText={value => this.props.updateNewProductForm({property: 'title', value})}
+              value={this.props.title}
+            />
+          </CardSection>
 
-        <CardSection>
-          <InputField
-            label="PRICE"
-            placeholder="$"
-            onChangeText={value => this.props.updateNewProductForm({property: 'price', value})}
-            value={this.props.price}
-          />
-        </CardSection>
+          <CardSection>
+            <InputField
+              label="PRICE"
+              placeholder="$"
+              onChangeText={value => this.props.updateNewProductForm({property: 'price', value})}
+              value={this.props.price}
+            />
+          </CardSection>
 
-        <CardSection>
-          <InputField
-            label="DESCRIPTION"
-            placeholder="Description"
-            onChangeText={value => this.props.updateNewProductForm({property: 'description', value})}
-            value={this.props.description}
-          />
-        </CardSection>
+          <CardSection>
+            <InputField
+              label="DESCRIPTION"
+              placeholder="Description"
+              onChangeText={value => this.props.updateNewProductForm({property: 'description', value})}
+              value={this.props.description}
+            />
+          </CardSection>
 
-        <CardSection>
-          <InputField
-            label="COLOR"
-            placeholder="Color"
-            onChangeText={value => this.props.updateNewProductForm({property: 'color', value})}
-            value={this.props.color}
-          />
-        </CardSection>
+          <CardSection>
+            <InputField
+              label="COLOR"
+              placeholder="Color"
+              onChangeText={value => this.props.updateNewProductForm({property: 'color', value})}
+              value={this.props.color}
+            />
+          </CardSection>
 
-        <CardSection>
-          <Picker
-            placeholder="Select Category"
-            iosHeader="Select One"
-            mode="dropdown"
-            selectedValue={this.state.category}
-            onValueChange={value => this.setState({category: value})}>
-            <Item label='Men' value='Accessories (Men)'/>
-            <Item label='Women' value='Accessories (Women)'/>
-            <Item label='Books' value='Books'/>
-            <Item label='Computers' value='Computers'/>
-            <Item label='Mobile Electronics' value='Mobile Electronics'/>
-            <Item label='CDs/DVDs' value='CDs/DVDs'/>
-            <Item label='Music Instruments' value='Music Instruments'/>
-            <Item label='Clothes' value='Clothes'/>
-            <Item label='Tickets' value='Tickets'/>
-            <Item label='Video Games' value='Video Games'/>
-          </Picker>
-        </CardSection>
+          <CardSection>
+            <Picker
+              placeholder="Select Category"
+              iosHeader="Select One"
+              mode="dropdown"
+              selectedValue={this.state.category}
+              onValueChange={value => this.setState({category: value})}>
+              <Item label='Men' value='Accessories (Men)'/>
+              <Item label='Women' value='Accessories (Women)'/>
+              <Item label='Books' value='Books'/>
+              <Item label='Computers' value='Computers'/>
+              <Item label='Mobile Electronics' value='Mobile Electronics'/>
+              <Item label='CDs/DVDs' value='CDs/DVDs'/>
+              <Item label='Music Instruments' value='Music Instruments'/>
+              <Item label='Clothes' value='Clothes'/>
+              <Item label='Tickets' value='Tickets'/>
+              <Item label='Video Games' value='Video Games'/>
+            </Picker>
+          </CardSection>
 
-        <CardSection>
-          <Button onPress={this.onSubmitNewProduct.bind(this)} color="#1CFEBA">
-            CREATE PRODUCT
-          </Button>
-        </CardSection>
+          <CardSection>
+            <Button onPress={this.onSubmitNewProduct.bind(this)} color="#1CFEBA">
+              CREATE PRODUCT
+            </Button>
+          </CardSection>
+        </Card>
+        </ScrollView>
 
       </View>
     );
@@ -122,14 +116,15 @@ class NewProductFrom extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    s3ImageUpload,
     updateNewProductForm,
-    createNewProduct}, dispatch);
+    uploadFile,
+    fetchAllProducts
+  }, dispatch);
 }
 
 const mapStateToProps = (state) => {
-  const {title, price, description, color} = state.newProduct;
-  return {title, price, description, color};
+  const {title, price, description, color, s3url, isS3URLReceived} = state.newProduct;
+  return {title, price, description, color, s3url, isS3URLReceived};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewProductFrom);
@@ -145,4 +140,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null
   }
+});
+
+const resetFeed = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Feed'})
+  ]
 });

@@ -51,7 +51,7 @@ const ProductNavigation = StackNavigator({
       title: 'Profile',
       header: null
     }
-  },
+  }
 });
 
 export default ProductNavigation;

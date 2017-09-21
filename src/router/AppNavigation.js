@@ -1,12 +1,11 @@
 import React from 'react';
-import {TabNavigator} from 'react-navigation';
+import { TabNavigator } from 'react-navigation';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 import ProductNavigation from './ProductNavigation';
 import CategoryNavigation from './CategoryNavigation';
 import NewProductNavigation from './NewProductNavigation';
-
-import Notifications from '../components/Notifications';
+import NotificationNavigation from './NotificationNavigation';
 import Profile from '../components/Profile';
 
 const AppNavigation = TabNavigator({
@@ -47,7 +46,7 @@ const AppNavigation = TabNavigator({
     }
   },
   Notifications: {
-    screen: Notifications,
+    screen: NotificationNavigation,
     navigationOptions: {
       tabBarLabel: 'NOTIFICATIONS',
       tabBarIcon: ({focused}) => (
