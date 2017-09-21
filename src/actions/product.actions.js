@@ -94,14 +94,10 @@ export const updateNewProductForm = ({property, value}) => {
 };
 
 const createNewProduct = (newProduct) => {
-  // return dispatch => {
-    // dispatch({type: product.CREATE_NEW_PRODUCT_REQUEST})
     Axios.post(`${API_URL}/product/new/uid/${newProduct.seller_id}`, newProduct)
     .then(response =>{
       console.log(response);
-      // dispatch({type: product.CREATE_NEW_PRODUCT_SUCCESS, payload: response.data})
     }).catch(error => {
-      // dispatch({type: product.CREATE_NEW_PRODUCT_FAILURE, payload: error.response})
       console.log(error);
     });
 };

@@ -2,15 +2,12 @@ import * as product from '../actions/action.types';
 
 const INITIAL_STATE = {
   isLoading: false,
-  isS3URLReceived: false,
   isReceived: false,
   error: '',
-  s3url: '',
   title: '',
   price: '',
   description: '',
-  color: '',
-  newProduct: []
+  color: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,38 +16,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
           isLoading: true,
+          isReceived: false,
           error: ''
         };
 
     case product.CREATE_S3_PRODUCT_IMAGE_SUCCESS:
-      return {
-        ...state,
-          isLoading: false,
-          error: ''
-        };
-
-    case product.CREATE_S3_PRODUCT_IMAGE_FAILURE:
-      return {
-        ...state,
-          isLoading: false,
-          s3url: ''
-        };
-
-    case product.PRODUCT_FORM_UPDATE:
-      return {
-        ...state,
-          [action.payload.property]: action.payload.value
-        };
-
-    case product.CREATE_NEW_PRODUCT_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-        isReceived: false,
-        error: ''
-      };
-
-    case product.CREATE_NEW_PRODUCT_SUCCESS:
       return {
         ...state,
           isLoading: false,
@@ -59,11 +29,10 @@ export default (state = INITIAL_STATE, action) => {
           price: '',
           description: '',
           color: '',
-          error: '',
-          newProduct: action.payload
+          error: ''
         };
 
-    case product.CREATE_NEW_PRODUCT_FAILURE:
+    case product.CREATE_S3_PRODUCT_IMAGE_FAILURE:
       return {
         ...state,
           isLoading: false,
@@ -71,8 +40,13 @@ export default (state = INITIAL_STATE, action) => {
           title: '',
           price: '',
           description: '',
-          color: '',
-          error: action.payload
+          color: ''
+        };
+
+    case product.PRODUCT_FORM_UPDATE:
+      return {
+        ...state,
+          [action.payload.property]: action.payload.value
         };
 
     default:

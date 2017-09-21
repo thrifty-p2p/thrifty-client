@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingLeft: 5,
     fontSize: 14,
-    lineHeight: 23,
+    lineHeight: 30,
     flex: 2
   },
   labelStyle: {
