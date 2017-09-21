@@ -35,7 +35,6 @@ class UserProfile extends React.Component {
 
   renderProfileImage() {
     if (this.props.isReceived) {
-      console.log(this.props.productsByAccount);
       const {profile_image_url, first_name, last_name, username, total_sales} = this.props.productsByAccount;
       return (
         <ImageBackground source={{ uri: profile_image_url }} style={styles.image}>

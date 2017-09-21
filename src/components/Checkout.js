@@ -37,10 +37,9 @@ class Checkout extends Component {
   }
 
   renderOrderDetails() {
-    console.log(this.props);
     if (this.props.isOrderSuccessful) {
       return (
-        <View style={styles.body}>
+        <View>
           <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo.png'}} style={styles.image} />
           <Text style={styles.order}>ORDER ID: {this.props.transactionID}</Text>
           <Text style={styles.order}>{'Thank you for your order!'.toUpperCase()}</Text>
@@ -60,21 +59,22 @@ class Checkout extends Component {
     return (
       <View style={styles.container}>
         <Header navigation={this.props.navigation}/>
-        {this.renderOrderDetails()}
-        <View>
-          <CardSection>
-            <Button onPress={() => this.props.navigation.dispatch(resetFeed)}>
-              HOME
-            </Button>
-          </CardSection>
+        <View style={styles.body}>
+          {this.renderOrderDetails()}
         </View>
+          <View>
+            <CardSection>
+              <Button onPress={() => this.props.navigation.dispatch(resetFeed)}>
+                HOME
+              </Button>
+            </CardSection>
+          </View>
       </View>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.checkout);
   return {isLoading, isOrderSuccessful, transactionID} = state.checkout;
   return {
     isLoading,
@@ -94,8 +94,9 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === 'ios' ? 20 : 0
   },
   body: {
-    alignSelf: 'center',
-    justifyContent: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20
   },
   order: {
     fontSize: 16,

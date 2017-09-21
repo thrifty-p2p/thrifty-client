@@ -2,8 +2,8 @@ import Axios from 'axios';
 import {AsyncStorage} from 'react-native';
 import * as checkout from './action.types';
 
-// const API_URL = 'https://thrifty-p2p.herokuapp.com/api';
-const API_URL = (__DEV__) ? 'http://localhost:5000/api' : 'https://thrifty-p2p.herokuapp.com/api';
+const API_URL = 'https://thrifty-p2p.herokuapp.com/api';
+// const API_URL = (__DEV__) ? 'http://localhost:5000/api' : 'https://thrifty-p2p.herokuapp.com/api';
 
 export const paymentRequest = (orderDetails, product) => {
   return dispatch => {
