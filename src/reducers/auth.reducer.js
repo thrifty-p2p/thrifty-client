@@ -2,7 +2,7 @@ import * as auth from '../actions/action.types';
 
 const INITIAL_STATE = {
   isLoading: false,
-  isLoggedIn: true,
+  isLoggedIn: false,
   isReceived: false,
   error: '',
   first_name: '',

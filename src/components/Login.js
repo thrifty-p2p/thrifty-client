@@ -26,31 +26,34 @@ class Login extends Component {
           <Image source={{uri: 'https://s3.us-east-2.amazonaws.com/thrifty-p2p/thrifty_logo.png'}} style={styles.image} />
         </View>
 
-        <CardSection>
-
-          <InputField
-            label="EMAIL"
-            placeholder="Example@mail.com"
-            onChangeText={value => this.props.updateAccountForm({property: 'email', value})}
-            value={this.props.email}
-          />
-        </CardSection>
-
-        <CardSection>
-          <InputField
-            secureTextEntry
-            label="PASSWORD"
-            placeholder="Password"
-            onChangeText={value => this.props.updateAccountForm({property: 'password', value})}
-            value={this.props.password}
-          />
-        </CardSection>
-
-        <CardSection>
-          <Button onPress={this.onButtonPress} color="#1CFEBA">
-            LOGIN
-          </Button>
-        </CardSection>
+        <View style={styles.inputs}>
+          <CardSection>
+            <InputField
+              label="EMAIL"
+              placeholder="Example@mail.com"
+              onChangeText={value => this.props.updateAccountForm({property: 'email', value})}
+              value={this.props.email}
+            />
+          </CardSection>
+        </View>
+        <View style={styles.inputs}>
+          <CardSection>
+            <InputField
+              secureTextEntry
+              label="PASSWORD"
+              placeholder="Password"
+              onChangeText={value => this.props.updateAccountForm({property: 'password', value})}
+              value={this.props.password}
+            />
+          </CardSection>
+        </View>
+        <View style={styles.inputs}>
+          <CardSection>
+            <Button onPress={this.onButtonPress} color="#1CFEBA">
+              LOGIN
+            </Button>
+          </CardSection>
+        </View>
 
       </View>
     );
@@ -78,5 +81,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     marginBottom: 20
-  }
+  },
+  inputs: {
+    alignSelf: "stretch",
+    width: 300,
+    alignSelf: 'center',
+    padding: 5,
+  },
 })
