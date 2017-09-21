@@ -6,16 +6,9 @@ import {Picker} from 'native-base';
 import { NavigationActions } from 'react-navigation'
 
 import {Header, Button, InputField, Card, CardSection} from './common';
-import {fetchAllProducts, uploadFile, updateNewProductForm, createNewProduct} from '../actions/product.actions';
+import {fetchAllProducts, uploadFile, updateNewProductForm} from '../actions/product.actions';
 
 const Item = Picker.Item;
-
-const resetFeed = NavigationActions.reset({
-  index: 0,
-  actions: [
-    NavigationActions.navigate({ routeName: 'Feed'})
-  ]
-});
 
 class NewProductFrom extends Component {
   constructor(props) {
@@ -27,22 +20,23 @@ class NewProductFrom extends Component {
 
   async onSubmitNewProduct() {
     const image = this.props.navigation.state.params.selected[0];
-    this.props.uploadFile(image);
-    const UID = await AsyncStorage.getItem('userID').then(UID => UID).catch(error => error);
+    const UID = await AsyncStorage.getItem('userID')
+      .then(UID => UID)
+      .catch(error => error);
     const product = {
       title: this.props.title,
       price: parseInt(this.props.price, 10),
       description: this.props.description,
       color: this.props.color,
       category_names: [this.state.category],
-      image_url: `https://thrifty-p2p.s3.amazonaws.com/%2F${image.filename}`,
-      seller_id: (this.state.UID) ? this.state.UID : 1
+      seller_id: UID ? UID : 1
+    };
+
+    this.props.uploadFile(image, product);
+    this.setState({category: ''});
+
     }
-    await this.props.createNewProduct(product);
-    await this.setState({category: ''});
-    await this.props.fetchAllProducts();
-    await this.props.navigation.navigate(resetFeed)
-  }
+
 
   render() {
     return (
@@ -124,14 +118,13 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     updateNewProductForm,
     uploadFile,
-    fetchAllProducts,
-    createNewProduct
+    fetchAllProducts
   }, dispatch);
 }
 
 const mapStateToProps = (state) => {
-  const {title, price, description, color} = state.newProduct;
-  return {title, price, description, color};
+  const {title, price, description, color, s3url, isS3URLReceived} = state.newProduct;
+  return {title, price, description, color, s3url, isS3URLReceived};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewProductFrom);
@@ -147,4 +140,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null
   }
+});
+
+const resetFeed = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Feed'})
+  ]
 });

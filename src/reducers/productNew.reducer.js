@@ -19,8 +19,6 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
           isLoading: true,
-          isS3URLReceived: false,
-          s3url: '',
           error: ''
         };
 
@@ -28,8 +26,6 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
           isLoading: false,
-          isS3URLReceived: true,
-          s3url: action.payload,
           error: ''
         };
 
@@ -37,7 +33,6 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
           isLoading: false,
-          isS3URLReceived: false,
           s3url: ''
         };
 
@@ -52,7 +47,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: true,
         isReceived: false,
-        error: ''};
+        error: ''
+      };
 
     case product.CREATE_NEW_PRODUCT_SUCCESS:
       return {
