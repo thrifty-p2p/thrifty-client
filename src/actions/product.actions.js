@@ -4,8 +4,8 @@ import { RNS3 } from 'react-native-aws3';
 import {options} from '../AWS_config';
 import ImageResizer from 'react-native-image-resizer';
 
-// const API_URL = 'https://thrifty-p2p.herokuapp.com/api';
-const API_URL = (__DEV__) ? 'http://localhost:5000/api' : 'https://thrifty-p2p.herokuapp.com/api';
+const API_URL = 'https://thrifty-p2p.herokuapp.com/api';
+// const API_URL = (__DEV__) ? 'http://localhost:5000/api' : 'https://thrifty-p2p.herokuapp.com/api';
 
 export const fetchAllProducts = () => {
   return dispatch => {
@@ -69,7 +69,6 @@ export const uploadFile = (file, newProduct) => {
         if (response.status === 201) {
           dispatch({type: product.CREATE_S3_PRODUCT_IMAGE_SUCCESS});
           newProduct.image_url = response.body.postResponse.location;
-          console.log(newProduct);
           createNewProduct(newProduct);
         } else {
           dispatch({type: product.CREATE_S3_PRODUCT_IMAGE_FAILURE})

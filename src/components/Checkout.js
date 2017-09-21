@@ -37,7 +37,6 @@ class Checkout extends Component {
   }
 
   renderOrderDetails() {
-    console.log(this.props);
     if (this.props.isOrderSuccessful) {
       return (
         <View style={styles.body}>
@@ -74,7 +73,6 @@ class Checkout extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.checkout);
   return {isLoading, isOrderSuccessful, transactionID} = state.checkout;
   return {
     isLoading,
@@ -95,7 +93,8 @@ const styles = StyleSheet.create({
   },
   body: {
     alignSelf: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 20
   },
   order: {
     fontSize: 16,

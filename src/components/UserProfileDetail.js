@@ -11,7 +11,6 @@ const UserProfileDetail = (props) => {
 
   return (
     <View>
-      {console.log(props)}
       <Card>
         <CardSection>
           <TouchableOpacity onPress={() => props.navigation.navigate('Product', {productID: id})} color="#1cfeba">

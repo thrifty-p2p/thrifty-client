@@ -7,7 +7,6 @@ const CartPage = props => {
   const {product} = props.navigation.state.params;
   return(
     <View style={styles.container}>
-      {console.log(props.navigation.state.params.product)}
       <Header
         isBackProp={true}
         navigation={props.navigation}/>
