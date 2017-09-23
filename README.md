@@ -18,7 +18,7 @@ yarn install
 yarn start
 ```
 
-## Related Repositiries
+## Related Repositories
 
 * [Server](https://github.com/thrifty-p2p/thrifty-server)
 * [Database](https://github.com/thrifty-p2p/thrifty-database)
