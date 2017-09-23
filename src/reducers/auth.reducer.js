@@ -12,60 +12,58 @@ const INITIAL_STATE = {
   password: ''
 };
 
-export default (state = INITIAL_STATE, action) => {
+export default(state = INITIAL_STATE, action) => {
   switch (action.type) {
     case auth.ACCOUNT_FORM_UPDATE:
       return {
         ...state,
-          [action.payload.property]: action.payload.value
-        };
+        [action.payload.property]: action.payload.value
+      };
 
     case auth.ACCOUNT_LOGIN_REQUEST:
       return {
         ...state,
-          isLoading: true
-        };
+        isLoading: true
+      };
 
     case auth.ACCOUNT_LOGIN_SUCCESS:
       return {
         ...state,
-        ...INITIAL_STATE,
-          isLoggedIn: action.isLoggedIn
-        };
+        isLoggedIn: action.isLoggedIn,
+        INITIAL_STATE
+      };
 
     case auth.ACCOUNT_LOGIN_FAILUE:
       return {
         ...state,
-          error: action.payload,
-          ...INITIAL_STATE
-        };
+        error: action.payload,
+        INITIAL_STATE
+      };
 
     case auth.ACCOUNT_SIGNUP_REQUEST:
       return {
         ...state,
-          isLoading: true
-        };
+        isLoading: true
+      };
 
     case auth.ACCOUNT_SIGNUP_SUCCESS:
       return {
         ...state,
-        ...INITIAL_STATE,
-          isLoggedIn: action.isLoggedIn
-        };
+        isLoggedIn: action.isLoggedIn,
+        INITIAL_STATE
+      };
 
     case auth.ACCOUNT_SIGNUP_FAILUE:
       return {
         ...state,
-          error: action.payload,
-          ...INITIAL_STATE
-        };
+        error: action.payload,
+        INITIAL_STATE
+      };
 
     case auth.ACCOUNT_LOGOUT:
       return {
-        ...state,
-          isLoggedIn: action.isLoggedIn,
-          ...INITIAL_STATE
-        };
+        INITIAL_STATE
+      };
 
     default:
       return state;

@@ -18,6 +18,9 @@ export default (state = INITIAL_STATE, action) => {
     case product.FETCH_PRODUCT_BY_ID_FAILURE:
       return {...state, isLoading: false, isReceived: false, error: action.payload};
 
+    case product.ACCOUNT_LOGOUT:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

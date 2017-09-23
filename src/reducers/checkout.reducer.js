@@ -25,6 +25,9 @@ export default (state = INITIAL_STATE, action) => {
     case checkout.CREATE_PAYMENT_FAILURE:
       return {...state, isLoading: false, isOrderSuccessful: false, error: action.payload};
 
+    case checkout.ACCOUNT_LOGOUT:
+      return INITIAL_STATE;
+
     default:
       return state;
   }
