@@ -49,6 +49,10 @@ export default (state = INITIAL_STATE, action) => {
           [action.payload.property]: action.payload.value
         };
 
+
+    case product.ACCOUNT_LOGOUT:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

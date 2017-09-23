@@ -45,6 +45,10 @@ export default (state = INITIAL_STATE, action) => {
           error: action.payload,
           ...INITIAL_STATE
         }
+
+    case profile.ACCOUNT_LOGOUT:
+      return INITIAL_STATE;
+
     default:
       return state;
   }
